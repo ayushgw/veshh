@@ -1,5 +1,5 @@
 import React from 'react';
-import Categories from './components/Categories/Categories';
+import Categories from './Categories/Categories';
 
 const App = () => {
   const categories = [
