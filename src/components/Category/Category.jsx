@@ -1,8 +1,8 @@
 import React from 'react'
 
-import './CategoryItem.scss'
+import './Category.scss'
 
-const CategoryItem = ({ category }) => {
+const Category = ({ category }) => {
     const { title, imageUrl } = category;
     return (
         <div className="category-container">
@@ -15,4 +15,4 @@ const CategoryItem = ({ category }) => {
     )
 }
 
-export default CategoryItem
+export default Category

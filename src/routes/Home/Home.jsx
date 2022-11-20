@@ -1,5 +1,5 @@
 import React from 'react';
-import Categories from '../../components/Categories/Categories';
+import Catalogue from '../../components/Catalogue/Catalogue';
 
 const Home = () => {
   const categories = [
@@ -31,7 +31,7 @@ const Home = () => {
   ];
 
   return (
-    <Categories categories={categories} />
+    <Catalogue categories={categories} />
   );
 }
 
