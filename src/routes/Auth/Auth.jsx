@@ -5,7 +5,7 @@ import './Auth.scss'
 
 const Auth = () => {
   return (
-    <div className="sign-in-container">
+    <div className="auth-container">
       <SignInForm />
       <SignUpForm />
     </div>
