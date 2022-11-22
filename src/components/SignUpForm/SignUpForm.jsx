@@ -31,7 +31,6 @@ const SignUpForm = () => {
 
         try {
             const { user } = await createAuthUserWithEmailAndPassword(email, password)
-            console.log(user);
 
             await createUserDocumentFromAuth(user, { displayName })
             alert('Sign Up successful!')
@@ -63,7 +62,7 @@ const SignUpForm = () => {
 
                 <FormInput label="Confirm Password" type="password" required onChange={handleChange} name="confirmPassword" value={confirmPassword} />
 
-                <Button buttonType="google" type="submit">Sign Up</Button>
+                <Button buttonType="" type="submit">Sign Up</Button>
             </form>
         </div>
     )
