@@ -1,9 +1,9 @@
 import SignInForm from '../../components/SignInForm/SignInForm';
 import SignUpForm from '../../components/SignUpForm/SignUpForm';
 
-import './Auth.scss'
+import './AuthPage.scss'
 
-const Auth = () => {
+const AuthPage = () => {
   return (
     <div className="auth-container">
       <SignInForm />
@@ -12,4 +12,4 @@ const Auth = () => {
   )
 }
 
-export default Auth
+export default AuthPage

@@ -1,7 +1,7 @@
 import React from 'react';
 import Catalogue from '../../components/Catalogue/Catalogue';
 
-const Home = () => {
+const HomePage = () => {
   const categories = [
     {
       "id": 1,
@@ -35,4 +35,4 @@ const Home = () => {
   );
 }
 
-export default Home;
+export default HomePage;
