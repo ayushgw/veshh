@@ -5,6 +5,7 @@ import Navbar from './Navbar/Navbar'
 import HomePage from '../routes/HomePage/HomePage'
 import AuthPage from '../routes/AuthPage/AuthPage'
 import ShopPage from '../routes/ShopPage/ShopPage'
+import CheckoutPage from '../routes/CheckoutPage/CheckoutPage'
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
         <Route path="/" element={<HomePage />} />
         <Route path="/auth" element={<AuthPage />} />
         <Route path="/shop" element={<ShopPage />} />
+        <Route path="/checkout" element={<CheckoutPage />} />
       </Routes>
     </>
   )
