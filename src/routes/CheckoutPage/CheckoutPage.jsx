@@ -1,15 +1,12 @@
 import React from 'react'
 
-import CheckoutCartTable from '../../components/CheckoutCartTable/CheckoutCartTable'
+import CheckoutTable from '../../components/CheckoutTable/CheckoutTable'
 
 import './CheckoutPage.scss'
 
 const CheckoutPage = () => {
   return (
-    <>
-        <h1>Checkout</h1>
-        <CheckoutCartTable />
-    </>
+    <CheckoutTable />
   )
 }
 
