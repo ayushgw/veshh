@@ -6,6 +6,7 @@ import HomePage from '../routes/HomePage/HomePage'
 import AuthPage from '../routes/AuthPage/AuthPage'
 import ShopPage from '../routes/ShopPage/ShopPage'
 import CheckoutPage from '../routes/CheckoutPage/CheckoutPage'
+import CategoryPage from '../routes/CategoryPage/CategoryPage'
 
 const App = () => {
   return (
@@ -15,7 +16,10 @@ const App = () => {
         <Route path="*" element={<Navigate to="/" />} />
         <Route path="/" element={<HomePage />} />
         <Route path="/auth" element={<AuthPage />} />
-        <Route path="/shop" element={<ShopPage />} />
+        <Route path="/shop">
+          <Route index element={<ShopPage />} />
+          <Route path=":category" element={<CategoryPage />} />
+        </Route>
         <Route path="/checkout" element={<CheckoutPage />} />
       </Routes>
     </>
