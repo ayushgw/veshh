@@ -3,8 +3,6 @@ import React, { useContext } from 'react'
 import { CategoriesContext } from '../../contexts/CategoriesContext';
 import ShopCategoryPreview from '../ShopCategoryPreview/ShopCategoryPreview';
 
-import './ShopCategories.scss'
-
 const ShopCategories = () => {
   const { categoriesMap } = useContext(CategoriesContext);
   const categories = Object.keys(categoriesMap);

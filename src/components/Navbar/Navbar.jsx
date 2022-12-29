@@ -1,5 +1,4 @@
 import React, { useContext } from 'react'
-import { Link } from 'react-router-dom'
 
 import { ReactComponent as LogoImage } from '../../assets/crown.svg'
 import CartIcon from '../CartIcon/CartIcon'
@@ -9,30 +8,30 @@ import { UserContext } from '../../contexts/UserContext'
 import { CartContext } from '../../contexts/CartContext'
 import { signOutUser } from '../../utils/firebase/firebase'
 
-import './Navbar.scss'
+import { StyledNavbar, Logo, NavLink, NavLinks } from './styles'
 
 const Navbar = () => {
   const { currentUser } = useContext(UserContext);
   const { isCartOpen } = useContext(CartContext);
 
   return (
-    <div className="navbar">
-      <Link className="logo-container" to="/">
+    <StyledNavbar>
+      <Logo to="/">
         <LogoImage className='logo' />
-      </Link>
-      <div className="nav-links">
-        <Link className="nav-link" to="/shop">shop</Link>
+      </Logo>
+      <NavLinks>
+        <NavLink to="/shop">shop</NavLink>
         {currentUser
-          ? (<span className="nav-link" onClick={signOutUser}>sign out</span>)
-          : (<Link className="nav-link" to="/auth">login</Link>)
+          ? (<NavLink as='span' onClick={signOutUser}>sign out</NavLink>)
+          : (<NavLink to="/auth">login</NavLink>)
         }
         <CartIcon />
-      </div>
+      </NavLinks>
       {isCartOpen
         ? <CartDropdown />
         : null
       }
-    </div>
+    </StyledNavbar>
   )
 }
 

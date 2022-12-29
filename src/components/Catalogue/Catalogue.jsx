@@ -1,16 +1,16 @@
 import React from 'react'
 import Category from '../Category/Category'
 
-import './Catalogue.scss'
+import { CatalogueStyled } from './styles'
 
 const Catalogue = ({ categories }) => {
 
   return (
-    <div className="catalogue-container">
+    <CatalogueStyled>
       {categories.map((category) => (
         <Category category={category} key={category.id} />
       ))}
-    </div>
+    </CatalogueStyled>
   )
 }
 

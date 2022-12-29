@@ -1,17 +1,25 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 
-import './Category.scss'
+import { CategoryStyled, CategoryBgImage, CategoryBody, CategoryBodyHeading, CategoryBodyText } from './styles'
 
 const Category = ({ category }) => {
+    const navigate = useNavigate();
+
     const { title, imageUrl } = category;
+
+    const handleClick = () => {
+        navigate(`/shop/${title}`)
+    };
+
     return (
-        <div className="category-container">
-            <div className="background-image" style={{ backgroundImage: `url(${imageUrl})` }} />
-            <div className="category-body-container">
-                <h2>{title}</h2>
-                <p>Shop Now</p>
-            </div>
-        </div>
+        <CategoryStyled onClick={handleClick}>
+            <CategoryBgImage imageUrl={imageUrl} />
+            <CategoryBody>
+                <CategoryBodyHeading>{title}</CategoryBodyHeading>
+                <CategoryBodyText>Shop Now</CategoryBodyText>
+            </CategoryBody>
+        </CategoryStyled>
     )
 }
 
