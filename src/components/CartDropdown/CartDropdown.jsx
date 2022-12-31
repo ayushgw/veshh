@@ -5,25 +5,33 @@ import Button, { BUTTON_TYPES } from '../Button/Button'
 import CartItem from '../CartItem/CartItem'
 import { CartContext } from '../../contexts/CartContext'
 
-import { CartDropdownContainer, CartDropdownItems, EmptyMessage } from './styles'
+import { DropdownBackdrop, Dropdown, Items, EmptyMessage, LinkButton } from './styles'
 
 const CartDropdown = () => {
-    const { cartItems } = useContext(CartContext);
+    const { cartItems, setIsCartOpen } = useContext(CartContext);
 
     const navigate = useNavigate();
     const gotoCheckout = () => navigate('/checkout');
 
+    const closeCart = () => {
+        setIsCartOpen(false);
+    };
+
     return (
-        <CartDropdownContainer>
-            <CartDropdownItems>
-                {
-                    cartItems.length 
-                    ? cartItems.map(item => <CartItem key={item.id} cartItem={item} />)
-                    : <EmptyMessage>Your cart is empty</EmptyMessage>
-                }
-            </CartDropdownItems>
-            <Button buttonType={BUTTON_TYPES.base} onClick={gotoCheckout}>go to checkout</Button>
-        </CartDropdownContainer>
+        <>
+            <DropdownBackdrop onClick={() => closeCart()}></DropdownBackdrop>
+            <Dropdown>
+                <Items>
+                    {
+                        cartItems.length
+                            ? cartItems.map(item => <CartItem key={item.id} cartItem={item} />)
+                            : <EmptyMessage>Your cart is empty</EmptyMessage>
+                    }
+                </Items>
+                <LinkButton onClick={() => closeCart()}>continue shopping &#10550;</LinkButton>
+                <Button buttonType={BUTTON_TYPES.base} onClick={gotoCheckout}>go to checkout</Button>
+            </Dropdown>
+        </>
     )
 }
 
