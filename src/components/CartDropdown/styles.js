@@ -47,7 +47,7 @@ export const EmptyMessage = styled.span`
 `
 
 export const Items = styled.div`
-    height: 240px;
+    height: 275px;
     display: flex;
     flex-direction: column;
     overflow: auto;

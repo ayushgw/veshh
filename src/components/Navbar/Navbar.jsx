@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
+import { Link } from 'react-router-dom'
 
-import { ReactComponent as LogoImage } from '../../assets/crown.svg'
+import LogoPng from '../../assets/logo.png'
 import CartIcon from '../CartIcon/CartIcon'
 import CartDropdown from '../CartDropdown/CartDropdown'
 
@@ -8,7 +9,7 @@ import { UserContext } from '../../contexts/UserContext'
 import { CartContext } from '../../contexts/CartContext'
 import { signOutUser } from '../../utils/firebase/firebase'
 
-import { StyledNavbar, Logo, NavLink, NavLinks } from './styles'
+import { StyledNavbar, LogoImage, NavLink, NavLinks } from './styles'
 
 const Navbar = () => {
   const { currentUser } = useContext(UserContext);
@@ -16,9 +17,9 @@ const Navbar = () => {
 
   return (
     <StyledNavbar>
-      <Logo to="/">
-        <LogoImage className='logo' />
-      </Logo>
+      <Link to="/">
+        <LogoImage src={LogoPng} alt="logo" />
+      </Link>
       <NavLinks>
         <NavLink to="/shop">shop</NavLink>
         {currentUser

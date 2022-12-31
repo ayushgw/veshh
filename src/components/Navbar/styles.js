@@ -9,8 +9,15 @@ export const StyledNavbar = styled.div`
   margin-bottom: 25px;
 `
 
+export const LogoImage = styled.img`
+  height: 100%;
+  width: 140px;
+  padding: 5px;
+  padding-left: 20px;
+`
+
 export const Logo = styled(Link)`
-  height: 100 %;
+  height: 100%;
   width: 70px;
   padding: 25px;
 `
