@@ -1,11 +1,10 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 
 import LogoPng from '../../assets/logo.png'
 import CartIcon from '../CartIcon/CartIcon'
 import CartDropdown from '../CartDropdown/CartDropdown'
 
-import { CartContext } from '../../contexts/CartContext'
 import { signOutUser } from '../../utils/firebase/firebase'
 
 import { StyledNavbar, LogoImage, NavLink, NavLinks } from './styles'
@@ -14,8 +13,7 @@ import { useSelector } from 'react-redux'
 
 const Navbar = () => {
   const { user } = useSelector(store => store.user);
-
-  const { isCartOpen } = useContext(CartContext);
+  const { isCartOpen } = useSelector(store => store.cart);
 
   return (
     <StyledNavbar>

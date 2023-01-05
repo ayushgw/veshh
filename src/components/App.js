@@ -12,19 +12,17 @@ import CategoryPage from '../routes/CategoryPage/CategoryPage'
 import { createUserDocumentFromAuth, onAuthStateChangedListener } from '../utils/firebase/firebase'
 import { setUser } from '../features/userSlice'
 
-const getUserAuth = (user) => {
-  return user ? { uid: user.uid, email: user.email, displayName: user.displayName } : null;
-}
-
 const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
     const unsubscribe = onAuthStateChangedListener((user) => {
+      const userAuth = user ? { uid: user.uid, email: user.email, displayName: user.displayName } : null;
+
       if (user) {
-        createUserDocumentFromAuth(getUserAuth(user));
+        createUserDocumentFromAuth(userAuth);
       }
-      dispatch(setUser(getUserAuth(user)));
+      dispatch(setUser(userAuth));
     })
 
     return unsubscribe;

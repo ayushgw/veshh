@@ -1,11 +1,12 @@
-import React, { useContext } from 'react'
+import React from 'react'
+import { useDispatch } from 'react-redux';
 
-import { CartContext } from '../../contexts/CartContext';
+import { updateQuantityOrRemoveItem } from '../../features/cartSlice';
 
 import { CheckoutItemStyled, CheckoutItemImageContainer, CheckoutItemRemoveButton } from './styles'
 
 const CheckoutItem = ({ cartItem }) => {
-    const { updateQuantityOrRemoveItem } = useContext(CartContext);
+    const dispatch = useDispatch();
 
     const { id, name, imageUrl, price, quantity } = cartItem;
 
@@ -16,12 +17,12 @@ const CheckoutItem = ({ cartItem }) => {
             </CheckoutItemImageContainer>
             <span className="name">{name}</span>
             <span className="quantity">
-                <div className="arrow" onClick={() => updateQuantityOrRemoveItem(id, -1)}>&#10094;</div>
+                <div className="arrow" onClick={() => dispatch(updateQuantityOrRemoveItem({id, flag: -1}))}>&#10094;</div>
                 <span className="value">{quantity}</span>
-                <div className="arrow" onClick={() => updateQuantityOrRemoveItem(id, 1)}>&#10095;</div>
+                <div className="arrow" onClick={() => dispatch(updateQuantityOrRemoveItem({id, flag: 1}))}>&#10095;</div>
             </span>
             <span className="price">&#8377;{price}</span>
-            <CheckoutItemRemoveButton onClick={() => updateQuantityOrRemoveItem(id)}>&#10005;</CheckoutItemRemoveButton>
+            <CheckoutItemRemoveButton onClick={() => dispatch(updateQuantityOrRemoveItem({id, flag: null}))}>&#10005;</CheckoutItemRemoveButton>
         </CheckoutItemStyled>
     )
 }
