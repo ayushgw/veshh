@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 
 import Navbar from './Navbar/Navbar'
 import HomePage from '../routes/HomePage/HomePage'
@@ -8,7 +9,27 @@ import ShopPage from '../routes/ShopPage/ShopPage'
 import CheckoutPage from '../routes/CheckoutPage/CheckoutPage'
 import CategoryPage from '../routes/CategoryPage/CategoryPage'
 
+import { createUserDocumentFromAuth, onAuthStateChangedListener } from '../utils/firebase/firebase'
+import { setUser } from '../features/userSlice'
+
+const getUserAuth = (user) => {
+  return user ? { uid: user.uid, email: user.email, displayName: user.displayName } : null;
+}
+
 const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChangedListener((user) => {
+      if (user) {
+        createUserDocumentFromAuth(getUserAuth(user));
+      }
+      dispatch(setUser(getUserAuth(user)));
+    })
+
+    return unsubscribe;
+  }, [dispatch]);
+
   return (
     <>
       <Navbar />

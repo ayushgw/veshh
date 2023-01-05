@@ -5,14 +5,16 @@ import LogoPng from '../../assets/logo.png'
 import CartIcon from '../CartIcon/CartIcon'
 import CartDropdown from '../CartDropdown/CartDropdown'
 
-import { UserContext } from '../../contexts/UserContext'
 import { CartContext } from '../../contexts/CartContext'
 import { signOutUser } from '../../utils/firebase/firebase'
 
 import { StyledNavbar, LogoImage, NavLink, NavLinks } from './styles'
 
+import { useSelector } from 'react-redux'
+
 const Navbar = () => {
-  const { currentUser } = useContext(UserContext);
+  const { user } = useSelector(store => store.user);
+
   const { isCartOpen } = useContext(CartContext);
 
   return (
@@ -21,8 +23,14 @@ const Navbar = () => {
         <LogoImage src={LogoPng} alt="logo" />
       </Link>
       <NavLinks>
+      {
+        user &&
+        (<span style={{background: "#fafa4a4d", padding: "5px"}}>
+          {'Hi, ' + (user.displayName || user.email)}
+        </span>)
+      }
         <NavLink to="/shop">shop</NavLink>
-        {currentUser
+        {user
           ? (<NavLink as='span' onClick={signOutUser}>sign out</NavLink>)
           : (<NavLink to="/auth">login</NavLink>)
         }
