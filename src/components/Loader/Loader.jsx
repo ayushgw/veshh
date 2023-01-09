@@ -1,8 +1,12 @@
 import React from 'react'
 
+import { LoadingAnimation } from './styles'
+
 const Loader = () => {
   return (
-    <div>Loading...</div>
+    <div style={{ flexGrow: 1, alignItems: 'center', display: 'flex' }}>
+        <LoadingAnimation />
+    </div>
   )
 }
 

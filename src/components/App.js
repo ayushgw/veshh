@@ -29,7 +29,7 @@ const App = () => {
   }, [dispatch]);
 
   return (
-    <>
+    <div style={{ minHeight: '100vh', padding: '20px 40px', display: 'flex', flexDirection: 'column' }}>
       <Navbar />
       <Routes>
         <Route path="*" element={<Navigate to="/" />} />
@@ -41,7 +41,7 @@ const App = () => {
         </Route>
         <Route path="/checkout" element={<CheckoutPage />} />
       </Routes>
-    </>
+    </div>
   )
 }
 
