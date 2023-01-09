@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const CatgeoryPreview = styled.div`
+export const CatgeoryPreviewStyled = styled.div`
     display: flex;
     flex-direction: column;
     margin-bottom: 30px;

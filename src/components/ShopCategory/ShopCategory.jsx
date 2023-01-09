@@ -1,21 +1,29 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 
-import { CategoriesContext } from '../../contexts/CategoriesContext'
+import Loader from '../Loader/Loader';
 import ProductCard from '../ProductCard/ProductCard';
+
+import { getProducts } from '../../features/productsSlice';
 
 import { CategoryProducts, CategoryTitle, Error, ErrorImage, ErrorText, ErrorLink } from './styles'
 
 const ShopCategory = ({ category }) => {
-
-    const { categoriesMap } = useContext(CategoriesContext);
-    const [products, setProducts] = useState(categoriesMap[category]);
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        setProducts(categoriesMap[category]);
-    }, [category, categoriesMap])
+      dispatch(getProducts());
+    }, [dispatch])
 
-    const isCategoryValid = ["mens", "womens", "hats", "sneakers", "jackets"].find(cat => cat === category);
-    if (!isCategoryValid) {
+    const { isLoading, products } = useSelector(store => store.products);
+
+    if(isLoading) {
+        return <Loader />;
+    }
+
+    const categoryObject = products.find(product => product.title === category)
+    
+    if (!categoryObject) {
         return (
             <Error>
                 <ErrorImage />
@@ -29,7 +37,7 @@ const ShopCategory = ({ category }) => {
         <>
             <CategoryTitle>{category.toUpperCase()}</CategoryTitle>
             <CategoryProducts>
-                {products && products.map(product => <ProductCard key={product.id} product={product} />)}
+                {categoryObject && categoryObject.items.map(item => <ProductCard key={item.id} product={item} />)}
             </CategoryProducts>
         </>
     )

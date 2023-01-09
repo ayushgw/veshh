@@ -1,10 +1,10 @@
 import React from 'react'
 
-import ShopCategories from '../../components/ShopCategories/ShopCategories'
+import Shop from '../../components/Shop/Shop'
 
 const ShopPage = () => {
   return (
-    <ShopCategories />
+    <Shop />
   )
 }
 

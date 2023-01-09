@@ -2,9 +2,9 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import ProductCard from '../ProductCard/ProductCard'
 
-import { CatgeoryPreview, Title, Preview } from './styles'
+import { CatgeoryPreviewStyled, Title, Preview } from './styles'
 
-const ShopCategoryPreview = ({ title, products }) => {
+const CategoryPreview = ({ title, products }) => {
     const navigate = useNavigate();
 
     const handleClick = () => {
@@ -12,7 +12,7 @@ const ShopCategoryPreview = ({ title, products }) => {
     };
 
     return (
-        <CatgeoryPreview>
+        <CatgeoryPreviewStyled>
             <h2>
                 <Title onClick={handleClick}>{title.toUpperCase()}</Title>
             </h2>
@@ -24,8 +24,8 @@ const ShopCategoryPreview = ({ title, products }) => {
                     ))
                 }
             </Preview>
-        </CatgeoryPreview>
+        </CatgeoryPreviewStyled>
     )
 }
 
-export default ShopCategoryPreview
+export default CategoryPreview

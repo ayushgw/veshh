@@ -3,10 +3,10 @@ import { useNavigate } from 'react-router-dom';
 
 import { CategoryStyled, CategoryBgImage, CategoryBody, CategoryBodyHeading, CategoryBodyText } from './styles'
 
-const Category = ({ category }) => {
+const Category = ({ product }) => {
     const navigate = useNavigate();
 
-    const { title, imageUrl } = category;
+    const { title, imageUrl } = product;
 
     const handleClick = () => {
         navigate(`/shop/${title}`)
