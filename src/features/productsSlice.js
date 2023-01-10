@@ -4,7 +4,6 @@ import { getCategoriesAndDocuments } from "../utils/firebase/firebase";
 
 const initialState = {
     products: null,
-    categories: [],
     isLoading: true,
     error: false
 };
@@ -32,7 +31,6 @@ const productsSlice = createSlice({
             .addCase(getProducts.fulfilled, (state, { payload }) => {
                 state.isLoading = false;
                 state.products = payload;
-                state.categories = payload.map(item => item.title.toLowerCase());
             })
             .addCase(getProducts.rejected, (state, action) => {
                 state.error = true;

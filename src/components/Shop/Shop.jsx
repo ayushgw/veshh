@@ -16,7 +16,7 @@ const Shop = () => {
 
   const { products, isLoading } = useSelector(store => store.products);
 
-  if(isLoading || true) {
+  if(isLoading) {
     return <Loader />;
   }
 

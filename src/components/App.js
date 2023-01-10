@@ -11,6 +11,7 @@ import CategoryPage from '../routes/CategoryPage/CategoryPage'
 
 import { createUserDocumentFromAuth, onAuthStateChangedListener } from '../utils/firebase/firebase'
 import { setUser } from '../features/userSlice'
+import { setCart } from '../features/cartSlice'
 
 const App = () => {
   const dispatch = useDispatch();
@@ -27,6 +28,14 @@ const App = () => {
 
     return unsubscribe;
   }, [dispatch]);
+
+  useEffect(() => {
+    const cartItems = JSON.parse(localStorage.getItem('veshh_cart_items')) || [];
+    
+    console.log(cartItems);
+    dispatch(setCart(cartItems));
+  }, [dispatch])
+  
 
   return (
     <div style={{ minHeight: '100vh', padding: '20px 40px', display: 'flex', flexDirection: 'column' }}>
