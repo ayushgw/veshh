@@ -19,7 +19,7 @@ export const BaseButton = styled.button`
     justify-content: center;
     transition: 0.15s all ease-out;
 
-    &:hover {
+    &:not(.nohover):hover {
         background-color: white;
         color: black;
         border: 1px solid black;
@@ -30,7 +30,7 @@ export const GoogleSignInButton = styled(BaseButton)`
     background-color: #4285f4;
     color: white;
 
-    &:hover {
+    &:not(.nohover):hover {
         background-color: #3071da;
         border: none;
         color: white;
@@ -42,7 +42,7 @@ export const InvertedButton = styled(BaseButton)`
     color: black;
     border: 1px solid black;
 
-    &:hover {
+    &:not(.nohover):hover {
         background-color: black;
         color: white;
         border: none;

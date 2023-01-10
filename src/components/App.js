@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
+import Modal from './Modal/Modal'
 import Navbar from './Navbar/Navbar'
 import HomePage from '../routes/HomePage/HomePage'
 import AuthPage from '../routes/AuthPage/AuthPage'
@@ -15,6 +16,8 @@ import { setCart } from '../features/cartSlice'
 
 const App = () => {
   const dispatch = useDispatch();
+
+  const { isOpen } = useSelector(store => store.modal);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChangedListener((user) => {
@@ -31,14 +34,14 @@ const App = () => {
 
   useEffect(() => {
     const cartItems = JSON.parse(localStorage.getItem('veshh_cart_items')) || [];
-    
-    console.log(cartItems);
+
     dispatch(setCart(cartItems));
   }, [dispatch])
-  
+
 
   return (
     <div style={{ minHeight: '100vh', padding: '20px 40px', display: 'flex', flexDirection: 'column' }}>
+      {isOpen && <Modal />}
       <Navbar />
       <Routes>
         <Route path="*" element={<Navigate to="/" />} />

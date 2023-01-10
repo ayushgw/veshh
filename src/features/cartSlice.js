@@ -7,8 +7,6 @@ const initialState = {
     cartTotal: 0
 };
 
-// TODO: retain cart state after reload -- using localStorage
-
 const cartSlice = createSlice({
     name: 'cart',
     initialState,
@@ -19,7 +17,6 @@ const cartSlice = createSlice({
             state.cartItemsCount = cartItems.reduce((count, cartItem) => count + cartItem.quantity, 0);
             state.cartTotal = cartItems.reduce((total, cartItem) => total + (cartItem.price * cartItem.quantity), 0);
             
-            console.log(state.cartItems);
             localStorage.setItem('veshh_cart_items', JSON.stringify(state.cartItems));
         },
         addItemToCart: (state, actions) => {
@@ -67,13 +64,12 @@ const cartSlice = createSlice({
             }
 
             cartSlice.caseReducers.setCart(state, actionsObj);
-
-            // state.cartItems = updatedCartItems
-            // state.cartItemsCount = updatedCartItems.reduce((count, cartItem) => count + cartItem.quantity, 0);
-            // state.cartTotal = updatedCartItems.reduce((total, cartItem) => total + (cartItem.price * cartItem.quantity), 0);
         },
         clearCart: (state) => {
-            state.cartItems = []
+            state.cartItems = [];
+            state.cartTotal = 0;
+            state.cartItemsCount = 0;
+            localStorage.removeItem('veshh_cart_items');
         },
         toggleIsCartOpen: (state) => {
             state.isCartOpen = !state.isCartOpen

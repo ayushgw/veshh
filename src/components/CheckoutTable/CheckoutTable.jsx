@@ -1,11 +1,15 @@
 import React from 'react'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
+import Button, { BUTTON_TYPES } from '../Button/Button'
 import CheckoutItem from '../CheckoutItem/CheckoutItem';
+
+import { openModal } from '../../features/modalSlice'
 
 import { CheckoutContainer, Header, CheckoutTableStyled, HeaderBlock, TableHeader, CheckoutTotal, EmptyText } from './styles'
 
 const CheckoutTable = () => {
+    const dispatch = useDispatch();
     const { cartItems, cartTotal } = useSelector(store => store.cart);
 
     return (
@@ -24,6 +28,7 @@ const CheckoutTable = () => {
                         </TableHeader>
                         {cartItems.map((cartItem) => <CheckoutItem key={cartItem.id} cartItem={cartItem} />)}
                         <CheckoutTotal>Total: &#8377;{cartTotal}</CheckoutTotal>
+                        <Button buttonType={BUTTON_TYPES.base} onClick={() => {dispatch(openModal())}}>clear cart</Button>
                     </CheckoutTableStyled>
             }
         </CheckoutContainer>
