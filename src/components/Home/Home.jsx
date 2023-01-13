@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import Loader from '../Loader/Loader'
 import Category from '../Category/Category'
 
-import { getProducts } from '../../features/productsSlice'
+import { getProductsFetch } from '../../features/productsSlice'
 
 import { HomeStyled } from './styles'
 
@@ -12,7 +12,7 @@ const Home = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getProducts());
+    dispatch(getProductsFetch());
   }, [dispatch])
 
   const { products, isLoading } = useSelector(store => store.products);

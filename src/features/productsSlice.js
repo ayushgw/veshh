@@ -1,43 +1,27 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-
-import { getCategoriesAndDocuments } from "../utils/firebase/firebase";
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    products: null,
-    isLoading: true,
-    error: false
+    products: [],
+    isLoading: false,
 };
-
-export const getProducts = createAsyncThunk(
-    'products/getProducts',
-    async (_, thunkAPI) => {
-        try {
-            const data = await getCategoriesAndDocuments();
-            return data;
-        } catch (error) {
-            return thunkAPI.rejectWithValue('something went wrong');
-        }
-    }
-);
 
 const productsSlice = createSlice({
     name: 'products',
     initialState,
-    extraReducers: (builder) => {
-        builder
-            .addCase(getProducts.pending, (state, action) => {
-                state.isLoading = true;
-            })
-            .addCase(getProducts.fulfilled, (state, { payload }) => {
-                state.isLoading = false;
-                state.products = payload;
-            })
-            .addCase(getProducts.rejected, (state, action) => {
-                state.error = true;
-                state.isLoading = false;
-                console.log(action);
-            })
+    reducers: {
+        getProductsFetch: (state) => {
+            state.isLoading = true;
+        },
+        getProductsSuccess: (state, { payload }) => {
+            state.products = payload;
+            state.isLoading = false;
+        },
+        getProductsFailure: (state) => {
+            state.isLoading = false;
+        }
     }
 });
+
+export const { getProductsFetch, getProductsSuccess, getProductsFailure } = productsSlice.actions;
 
 export default productsSlice.reducer;
