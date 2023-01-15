@@ -6,7 +6,7 @@ import cartReducer from '../features/cartSlice';
 import productsReducer from '../features/productsSlice';
 import modalReducer from '../features/modalSlice';
 
-import productsSaga from "../sagas/productsSaga";
+import { rootSaga } from "../sagas/rootSaga";
 
 const saga = createSagaMiddleware();
 export const store = configureStore({
@@ -19,4 +19,4 @@ export const store = configureStore({
     middleware: [saga]
 });
 
-saga.run(productsSaga)
+saga.run(rootSaga)

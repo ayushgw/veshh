@@ -1,8 +1,12 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 
 import FormInput from '../FormInput/FormInput';
 import Button, { BUTTON_TYPES } from '../Button/Button';
-import { createAuthUserWithEmailAndPassword, createUserDocumentFromAuth } from '../../utils/firebase/firebase';
+
+import { signUpStart } from '../../features/userSlice';
+
+// import { createAuthUserWithEmailAndPassword, createUserDocumentFromAuth } from '../../utils/firebase/firebase';
 
 import { SignUpContainer } from './styles'
 
@@ -14,12 +18,19 @@ const defaultFormFields = {
 };
 
 const SignUpForm = () => {
+    const dispatch = useDispatch();
+    const { hasSignedUp } = useSelector(store => store.user)
+
     const [formFields, setFormFields] = useState(defaultFormFields);
     const { displayName, email, password, confirmPassword } = formFields;
 
-    const resetFormFields = () => {
-        setFormFields(defaultFormFields);
-    }
+    useEffect(() => {
+        if (hasSignedUp) {
+            alert('Signed up successfully. You can login now.'); //TODO: change into custom modal
+            setFormFields(defaultFormFields); // reset form fields
+            window.location.reload();
+        }
+    }, [hasSignedUp])
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -30,10 +41,7 @@ const SignUpForm = () => {
         }
 
         try {
-            const { user } = await createAuthUserWithEmailAndPassword(email, password)
-            await createUserDocumentFromAuth(user, { displayName })
-            alert('Sign Up successful!')
-            resetFormFields();
+            dispatch(signUpStart({ displayName, email, password }));
         } catch (error) {
             if (error.code === 'auth/email-already-in-use') {
                 alert('Cannot create user, email already in use!');
