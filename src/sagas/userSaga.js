@@ -3,10 +3,14 @@ import { signInSuccess, signInFailure, signOutFailure, signOutSuccess, signUpSuc
 
 import { getCurrentUser, createUserDocumentFromAuth, signInWithGooglePopup, signInAuthUserWithEmailAndPassword, signOutUser, createAuthUserWithEmailAndPassword } from "../utils/firebase/firebase";
 
+function* handleSignInSuccess(userSnapshot) {
+    yield put(signInSuccess({ id: userSnapshot.id, ...userSnapshot.data() }));
+}
+
 function* getUserSnapshot(userAuth, additionalInfo) {
     try {
         const userSnapshot = yield call(() => createUserDocumentFromAuth(userAuth, additionalInfo));
-        yield put(signInSuccess({ id: userSnapshot.id, ...userSnapshot.data() }));
+        return userSnapshot;
     } catch (error) {
         yield put(signInFailure(error));
     }
@@ -15,7 +19,8 @@ function* getUserSnapshot(userAuth, additionalInfo) {
 function* workGoogleSignInStart() {
     try {
         const { user } = yield call(() => signInWithGooglePopup());
-        yield call(() => getUserSnapshot(user))
+        const userSnapshot = yield call(() => getUserSnapshot(user))
+        yield call(() => handleSignInSuccess(userSnapshot));
     } catch (error) {
         yield put(signInFailure(error));
     }
@@ -24,7 +29,8 @@ function* workGoogleSignInStart() {
 function* workEmailSignInStart({ payload: { email, password } }) {
     try {
         const { user } = yield call(() => signInAuthUserWithEmailAndPassword(email, password));
-        yield call(() => getUserSnapshot(user))
+        const userSnapshot = yield call(() => getUserSnapshot(user));
+        yield call(() => handleSignInSuccess(userSnapshot));
     } catch (error) {
         yield put(signInFailure(error));
     }
@@ -32,7 +38,7 @@ function* workEmailSignInStart({ payload: { email, password } }) {
 
 function* workSignUpStart({ payload: { displayName, email, password } }) {
     try {
-        const {user} = yield call(() => createAuthUserWithEmailAndPassword(email, password));
+        const { user } = yield call(() => createAuthUserWithEmailAndPassword(email, password));
         yield call(() => getUserSnapshot(user, { displayName }))
         yield put(signUpSuccess())
     } catch (error) {
@@ -49,7 +55,8 @@ function* workCheckUserSession() {
             return;
         }
 
-        yield call(() => getUserSnapshot(userAuth));
+        const userSnapshot = yield call(() => getUserSnapshot(userAuth));
+        yield call(() => handleSignInSuccess(userSnapshot));
     } catch (error) {
         yield put(signInFailure(error));
     }

@@ -19,15 +19,14 @@ const defaultFormFields = {
 
 const SignUpForm = () => {
     const dispatch = useDispatch();
-    const { hasSignedUp } = useSelector(store => store.user)
+    const { hasSignedUp } = useSelector(store => store.user);
 
     const [formFields, setFormFields] = useState(defaultFormFields);
     const { displayName, email, password, confirmPassword } = formFields;
 
     useEffect(() => {
         if (hasSignedUp) {
-            alert('Signed up successfully. You can login now.'); //TODO: change into custom modal
-            setFormFields(defaultFormFields); // reset form fields
+            // setFormFields(defaultFormFields); // reset form fields
             window.location.reload();
         }
     }, [hasSignedUp])

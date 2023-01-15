@@ -6,9 +6,23 @@ export const Wrap = styled.div`
     align-items: start;
     justify-content: center;
     width: 100%;
-    overflow: hidden;
-    max-height: 0;
-    transition: max-height 0.2s ease-out;
+    ${'' /* overflow: hidden; */}
+    ${'' /* transition: all 0.2s ease-out; */}
+
+    &.slide-enter {
+        transform: translateY(-100%);
+    }
+    &.slide-enter-active {
+        transform: translateY(0);
+        transition: transform 300ms;
+    }
+    &.slide-exit {
+        transform: translateY(0);
+    }
+    &.slide-exit-active {
+        transform: translateY(-100%);
+        transition: transform 300ms;
+    }
 `
 
 export const Content = styled.span`
@@ -18,6 +32,4 @@ export const Content = styled.span`
     border-radius: 0 0 5px 5px;
     text-align: center;
     font-size: 15px;
-
-    &
 `
