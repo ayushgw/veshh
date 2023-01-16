@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -6,7 +6,6 @@ import LogoPng from '../../assets/logo.png'
 import CartIcon from '../CartIcon/CartIcon'
 import CartDropdown from '../CartDropdown/CartDropdown'
 
-// import { signOutUser } from '../../utils/firebase/firebase'
 import { signOutStart } from '../../features/userSlice'
 
 import { StyledNavbar, LogoImage, NavLink, NavLinks } from './styles'

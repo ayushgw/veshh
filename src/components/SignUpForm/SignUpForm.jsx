@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import FormInput from '../FormInput/FormInput';
 import Button, { BUTTON_TYPES } from '../Button/Button';
 
 import { signUpStart } from '../../features/userSlice';
-
-// import { createAuthUserWithEmailAndPassword, createUserDocumentFromAuth } from '../../utils/firebase/firebase';
 
 import { SignUpContainer } from './styles'
 
@@ -18,6 +17,7 @@ const defaultFormFields = {
 };
 
 const SignUpForm = () => {
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const { hasSignedUp } = useSelector(store => store.user);
 
@@ -27,9 +27,9 @@ const SignUpForm = () => {
     useEffect(() => {
         if (hasSignedUp) {
             // setFormFields(defaultFormFields); // reset form fields
-            window.location.reload();
+            navigate(0);
         }
-    }, [hasSignedUp])
+    }, [hasSignedUp, navigate])
 
     const handleSubmit = async (event) => {
         event.preventDefault();
