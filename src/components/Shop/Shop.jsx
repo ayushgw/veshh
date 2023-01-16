@@ -12,16 +12,16 @@ const Shop = () => {
   useEffect(() => {
     dispatch(getProductsFetch());
   }, [dispatch])
-  
+
 
   const { products, isLoading } = useSelector(store => store.products);
 
-  if(isLoading) {
+  if (isLoading) {
     return <Loader />;
   }
 
   return (
-    <div className='shop-categories'>
+    <>
       {products.map(product => {
         const { id, title, items } = product;
 
@@ -29,7 +29,7 @@ const Shop = () => {
           <CategoryPreview key={id} title={title} products={items} />
         )
       })}
-    </div>
+    </>
   )
 }
 

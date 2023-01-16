@@ -19,3 +19,21 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.container {
+  max-width: 1920px;
+  margin: 0 auto;
+
+  min-height: 100vh;
+  padding: 1.25rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+
+  @media (max-width: 900px) {
+    padding: 0.45rem 1rem;
+  }
+
+  @media (max-width: 600px) {
+    padding: 0 0.2rem;
+  }
+}

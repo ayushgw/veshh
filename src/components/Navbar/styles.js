@@ -34,6 +34,7 @@ export const NavLink = styled(Link)`
   padding: 10px 15px;
   cursor: pointer;
   text-transform: uppercase;
+  transition: 0.2s all ease-in;
   
   &:hover {
     text-decoration: underline;

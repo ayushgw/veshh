@@ -12,17 +12,28 @@ export const CardButton = styled(Button)`
     width: 80%;
     opacity: 0.7;
     position: absolute;
-    top: 255px;
+    top: 16rem;
     display: none;
+
+    @media (max-width: 600px) {
+      top: 12rem;
+    }
 `
 
 export const ProductCardStyled = styled.div`
-  width: 100%;
+  position: relative;
   display: flex;
   flex-direction: column;
-  height: 350px;
   align-items: center;
-  position: relative;
+  width: 100%;
+  height: 22rem;
+  min-width: 15rem;
+  margin-bottom: 2.5rem;
+
+  @media (max-width: 600px) {
+    height: 17rem;
+    min-width: 12rem;
+  }
 
   &:hover {
     ${CardImage} {
@@ -44,11 +55,11 @@ export const CardFooter = styled.div`
     font-size: 18px;
 
     .name {
-        width: 90%;
-        margin-bottom: 15px;
+        ${'' /* width: 90%; */}
+        ${'' /* margin-bottom: 15px; */}
     }
 
     .price {
-        width: 10%; 
+        ${'' /* width: 10%;  */}
     }
 `
