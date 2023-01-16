@@ -20,11 +20,11 @@ const CheckoutTable = () => {
                     ? <EmptyText>is currently empty</EmptyText>
                     : <CheckoutTableStyled>
                         <TableHeader>
-                            <HeaderBlock><span>Product</span></HeaderBlock>
-                            <HeaderBlock><span>Description</span></HeaderBlock>
-                            <HeaderBlock><span>Quantity</span></HeaderBlock>
+                            <HeaderBlock><span>Item</span></HeaderBlock>
+                            <HeaderBlock><span>Desc</span></HeaderBlock>
+                            <HeaderBlock><span>Qty</span></HeaderBlock>
                             <HeaderBlock><span>Price</span></HeaderBlock>
-                            <HeaderBlock><span>Remove</span></HeaderBlock>
+                            <HeaderBlock><span></span></HeaderBlock>
                         </TableHeader>
                         {cartItems.map((cartItem) => <CheckoutItem key={cartItem.id} cartItem={cartItem} />)}
                         <CheckoutTotal>Total: &#8377;{cartTotal}</CheckoutTotal>

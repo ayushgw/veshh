@@ -3,7 +3,8 @@ import styled from 'styled-components'
 export const FormStyled = styled.div`
     display: flex;
     flex-direction: column;
-    width: 380px;
+    width: 24rem;
+    margin-bottom: 3rem;
 `
 
 export const Heading = styled.h2`

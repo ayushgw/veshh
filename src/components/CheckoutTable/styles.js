@@ -1,15 +1,32 @@
 import styled from 'styled-components'
 
 export const CheckoutContainer = styled.div`
-    width: 45%;
+    width: 55rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 0 auto;
+
+
+    @media (max-width: 1150px) {
+        width: 50rem;
+    }
+
+    @media (max-width: 850px) {
+        width: 40rem;
+    }
+
+    @media (max-width: 700px) {
+        width: 100%;
+    }
+
+    @media (max-width: 600px) {
+        min-width: 480px;
+    }
 `
 
 export const Header = styled.h2`
-    font-size: 4rem;
+    font-size: 2.7rem;
     text-transform: uppercase;
     margin: 10px;
 `
@@ -24,7 +41,11 @@ export const CheckoutTableStyled = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 50px auto 100px;
+    margin: 3.125rem auto 6.25rem;
+
+    @media (max-width: 900px) {
+        margin: 0.675rem 0;
+    }
 `
 
 export const TableHeader = styled.div`
