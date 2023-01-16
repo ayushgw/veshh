@@ -1,7 +1,7 @@
 import { put, call, takeEvery } from 'redux-saga/effects';
 import { signInSuccess, signInFailure, signOutFailure, signOutSuccess, signUpSuccess, setIsLoading, signUpFailure } from '../features/userSlice';
 
-import { getCurrentUser, createUserDocumentFromAuth, signInWithGooglePopup, signInAuthUserWithEmailAndPassword, signOutUser, createAuthUserWithEmailAndPassword } from "../utils/firebase/firebase";
+import { getCurrentUser, createUserDocumentFromAuth, signInWithGooglePopup, signInAuthUserWithEmailAndPassword, signOutUser, createAuthUserWithEmailAndPassword } from "../utils/firebase";
 
 function* handleSignInSuccess(userSnapshot) {
     yield put(signInSuccess({ id: userSnapshot.id, ...userSnapshot.data() }));

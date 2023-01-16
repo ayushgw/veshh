@@ -1,7 +1,7 @@
 import { put, call, takeEvery } from 'redux-saga/effects';
 import { getProductsFailure, getProductsSuccess } from '../features/productsSlice';
 
-import { getCategoriesAndDocuments } from "../utils/firebase/firebase";
+import { getCategoriesAndDocuments } from "../utils/firebase";
 
 function* workGetProductsFetch() {
     try {

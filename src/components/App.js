@@ -35,7 +35,6 @@ const App = () => {
   useEffect(() => {
     const user = sessionStorage.getItem('veshh_user') ? JSON.parse(sessionStorage.getItem('veshh_user')) : null;
     if(user) {
-      console.log(user);
       dispatch(setUser(user));
       return;
     }

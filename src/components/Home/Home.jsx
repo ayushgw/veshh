@@ -17,8 +17,6 @@ const Home = () => {
 
   const { products, isLoading } = useSelector(store => store.products);
 
-  console.log(products);
-
   if(isLoading) {
     return <Loader />;
   }
