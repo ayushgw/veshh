@@ -51,7 +51,7 @@ const App = () => {
     <>
       <Notification message={message} notificationAlert={notificationAlert} />
       {isLoadingUser && <LoadingScreen />}
-      <div style={{ minHeight: '100vh', padding: '20px 40px', display: 'flex', flexDirection: 'column' }}>
+      <div style={{ minHeight: '100vh', padding: '1.25rem 2.5rem', display: 'flex', flexDirection: 'column' }}>
         {isOpen && <Modal />}
         <Navbar />
         <Routes>

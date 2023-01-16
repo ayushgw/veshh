@@ -35,8 +35,8 @@ export const CategoryBodyText = styled.p`
 `
 
 export const CategoryStyled = styled.div`
-    min-width: 30%;
-    height: 240px;
+    min-width: 30rem;
+    height: 20rem;
     flex: 1 1 auto;
     display: flex;
     align-items: center;
@@ -44,7 +44,27 @@ export const CategoryStyled = styled.div`
     border: 1px solid black;
     margin: 0 7.5px 15px;
     overflow: hidden;
+
+    @media (max-width: 600px) {
+      min-width: 20rem;
+      height: 15rem;
+    }
+   
+    @media (max-width: 1500px) {
+      min-width: 25rem;
+      height: 17rem;
+    }
   
+    @media (max-width: 1350px) {
+      min-width: 20rem;
+      height: 15rem;
+    }
+
+    @media (max-width: 900px) {
+      min-width: 18rem;
+      height: 13rem;
+    }
+ 
     &:hover {
       cursor: pointer;
   

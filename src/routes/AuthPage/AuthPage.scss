@@ -1,6 +1,10 @@
 .auth-container {
     display: flex;
-    width: 900px;
+    width: 54rem;
     justify-content: space-between;
-    margin: 30px auto;
+    margin: 2.2rem auto;
+
+    @media (max-width: 990px) {
+        justify-content: space-evenly;
+    }
 }
