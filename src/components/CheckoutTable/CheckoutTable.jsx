@@ -11,7 +11,7 @@ import { CheckoutContainer, Header, CheckoutTableStyled, HeaderBlock, TableHeade
 
 const CheckoutTable = () => {
     const dispatch = useDispatch();
-    const { cartItems, cartTotal } = useSelector(store => store.cart);
+    const { cartItems, cartTotal, cartItemsCount } = useSelector(store => store.cart);
 
     return (
         <CheckoutContainer>
@@ -28,11 +28,11 @@ const CheckoutTable = () => {
                             <HeaderBlock><span></span></HeaderBlock>
                         </TableHeader>
                         {cartItems.map((cartItem) => <CheckoutItem key={cartItem.id} cartItem={cartItem} />)}
-                        <CheckoutTotal>Total: &#8377;{cartTotal}</CheckoutTotal>
-                        <Button buttonType={BUTTON_TYPES.base} onClick={() => { dispatch(openModal()) }}>clear cart</Button>
+                        {/* <Button buttonType={BUTTON_TYPES.base} onClick={() => { dispatch(openModal()) }}>clear cart</Button> */}
+                        <CheckoutTotal>Total({cartItemsCount} items): &#8377;<b>{cartTotal}</b></CheckoutTotal>
+                        <PaymentForm />
                     </CheckoutTableStyled>
             }
-            <PaymentForm />
         </CheckoutContainer>
     )
 }

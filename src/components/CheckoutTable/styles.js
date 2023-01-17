@@ -66,8 +66,8 @@ export const HeaderBlock = styled.div`
 `
 
 export const CheckoutTotal = styled.span`
-    margin-top: 30px;
-    ${'' /* margin-left: auto; */}
-    margin-bottom: 30px;
-    font-size: 36px;
+    margin-top: 1rem;
+    margin-left: auto;
+    margin-bottom: 1.875rem;
+    font-size: 1.5rem;
 `

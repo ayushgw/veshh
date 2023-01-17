@@ -35,7 +35,7 @@ export const CategoryBodyText = styled.p`
 `
 
 export const CategoryStyled = styled.div`
-    min-width: 30rem;
+    min-width: 28rem;
     height: 20rem;
     flex: 1 1 auto;
     display: flex;
