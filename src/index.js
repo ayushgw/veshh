@@ -20,3 +20,8 @@ root.render(
     </BrowserRouter>
   </Provider>
 );
+
+
+// TODO: Fix grid - products width bug
+// TODO: Replace alerts with modal
+// TODO: Fix grid - products width bug

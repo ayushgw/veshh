@@ -19,7 +19,6 @@ const PaymentForm = () => {
 
         if (!stripe || !elements) return;
 
-        console.log('now');
         setIsPaymentProcessing(true);
 
         const response = await fetch('/.netlify/functions/create-payment-intent', {
@@ -31,7 +30,6 @@ const PaymentForm = () => {
         }).then((res) => res.json());
 
         const { paymentIntent: { client_secret } } = response;
-        console.log(client_secret);
 
         const paymentResult = await stripe.confirmCardPayment(client_secret, {
             payment_method: {
