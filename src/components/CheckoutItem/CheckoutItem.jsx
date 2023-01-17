@@ -12,17 +12,19 @@ const CheckoutItem = ({ cartItem }) => {
 
     return (
         <CheckoutItemStyled>
+            <CheckoutItemRemoveButton onClick={() => dispatch(updateQuantityOrRemoveItem({ id, flag: null }))}>
+                <div>&#10005;</div>
+            </CheckoutItemRemoveButton>
             <CheckoutItemImageContainer>
                 <img src={imageUrl} alt={`${name}`} />
             </CheckoutItemImageContainer>
             <span className="name">{name}</span>
             <span className="quantity">
-                <div className="arrow" onClick={() => dispatch(updateQuantityOrRemoveItem({id, flag: -1}))}>&#10094;</div>
+                <div className="arrow" onClick={() => dispatch(updateQuantityOrRemoveItem({ id, flag: -1 }))}>&#10094;</div>
                 <span className="value">{quantity}</span>
-                <div className="arrow" onClick={() => dispatch(updateQuantityOrRemoveItem({id, flag: 1}))}>&#10095;</div>
+                <div className="arrow" onClick={() => dispatch(updateQuantityOrRemoveItem({ id, flag: 1 }))}>&#10095;</div>
             </span>
             <span className="price">&#8377;{price}</span>
-            <CheckoutItemRemoveButton onClick={() => dispatch(updateQuantityOrRemoveItem({id, flag: null}))}>&#10005;</CheckoutItemRemoveButton>
         </CheckoutItemStyled>
     )
 }
