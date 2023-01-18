@@ -36,10 +36,11 @@ const Navbar = () => {
         }
         <CartIcon />
       </NavLinks>
-      {isCartOpen
+      {/* {isCartOpen
         ? <CartDropdown />
         : null
-      }
+      } */}
+      <CartDropdown isCartOpen={isCartOpen} />
     </StyledNavbar>
   )
 }

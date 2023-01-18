@@ -8,7 +8,7 @@ import { toggleIsCartOpen } from '../../features/cartSlice'
 
 import { DropdownBackdrop, Dropdown, Items, EmptyMessage, LinkButton, Subtotal } from './styles'
 
-const CartDropdown = () => {
+const CartDropdown = ({ isCartOpen }) => {
     const dispatch = useDispatch();
     const { cartItems, cartTotal, cartItemsCount } = useSelector(store => store.cart);
 
@@ -19,13 +19,14 @@ const CartDropdown = () => {
     };
 
     const closeCart = () => {
+        document.body.style.overflow = 'unset';
         dispatch(toggleIsCartOpen());
     };
 
     return (
         <>
-            <DropdownBackdrop onClick={() => closeCart()}></DropdownBackdrop>
-            <Dropdown>
+            <DropdownBackdrop onClick={() => closeCart()} isCartOpen={isCartOpen}></DropdownBackdrop>
+            <Dropdown isCartOpen={isCartOpen}>
                 <Subtotal>Subtotal({cartItemsCount}): <b>&#8377;{cartTotal}</b></Subtotal>
                 <Items>
                     {

@@ -27,7 +27,9 @@ const CheckoutTable = () => {
                             <HeaderBlock className='qty'><span>Qty</span></HeaderBlock>
                             <HeaderBlock className='price'><span>Price</span></HeaderBlock>
                         </TableHeader>
+                        
                         {cartItems.map((cartItem) => <CheckoutItem key={cartItem.id} cartItem={cartItem} />)}
+                        
                         <TableFooter>
                             <button className="checkout" onClick={() => { dispatch(openModal()) }}>
                                 <TrashIcon />

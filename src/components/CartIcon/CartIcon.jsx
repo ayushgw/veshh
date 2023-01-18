@@ -9,8 +9,13 @@ const CartIcon = () => {
     const dispatch = useDispatch();
     const { cartItemsCount } = useSelector(store => store.cart);
 
+    const toggleCart = () => {
+        document.body.style.overflow = 'hidden';
+        dispatch(toggleIsCartOpen())
+    }
+
     return (
-        <CartIconComponent onClick={() => dispatch(toggleIsCartOpen())}>
+        <CartIconComponent onClick={toggleCart}>
             <CartIconImage />
             <CartCount>{cartItemsCount}</CartCount>
         </CartIconComponent>

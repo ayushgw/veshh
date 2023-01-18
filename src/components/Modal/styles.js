@@ -11,7 +11,7 @@ export const ModalContainer = styled.aside`
     
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.7);
+    background: #57505094;
     z-index: 10;
 
     visibility: ${props => (props.isOpen ? 'visible' : 'hidden')};
