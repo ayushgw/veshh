@@ -25,15 +25,15 @@ export const LinkButton = styled.button`
 
 export const Dropdown = styled.div`
     position: absolute;
-    width: 300px;
-    height: 440px;
+    width: 20rem;
+    height: 30rem;
     display: flex;
     flex-direction: column;
-    padding: 20px;
+    padding: 1.2rem;
     border: 1px solid black;
     background-color: white;
-    top: 90px;
-    right: 40px;
+    top: 5.5rem;
+    right: 3.5rem;
     z-index: 10;
 
     ${BaseButton}, ${GoogleSignInButton}, ${InvertedButton} {
@@ -47,8 +47,16 @@ export const EmptyMessage = styled.span`
 `
 
 export const Items = styled.div`
-    height: 275px;
+    height: 20rem;
     display: flex;
     flex-direction: column;
     overflow: auto;
+`
+
+export const Subtotal = styled.div`
+    text-align: right;
+    margin-bottom: 1rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid black;
+    font-size: 1rem;
 `

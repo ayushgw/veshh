@@ -6,11 +6,11 @@ import Button, { BUTTON_TYPES } from '../Button/Button'
 import CartItem from '../CartItem/CartItem'
 import { toggleIsCartOpen } from '../../features/cartSlice'
 
-import { DropdownBackdrop, Dropdown, Items, EmptyMessage, LinkButton } from './styles'
+import { DropdownBackdrop, Dropdown, Items, EmptyMessage, LinkButton, Subtotal } from './styles'
 
 const CartDropdown = () => {
     const dispatch = useDispatch();
-    const { cartItems } = useSelector(store => store.cart);
+    const { cartItems, cartTotal, cartItemsCount } = useSelector(store => store.cart);
 
     const navigate = useNavigate();
     const gotoCheckout = () => {
@@ -26,6 +26,7 @@ const CartDropdown = () => {
         <>
             <DropdownBackdrop onClick={() => closeCart()}></DropdownBackdrop>
             <Dropdown>
+                <Subtotal>Subtotal({cartItemsCount}): <b>&#8377;{cartTotal}</b></Subtotal>
                 <Items>
                     {
                         cartItems.length

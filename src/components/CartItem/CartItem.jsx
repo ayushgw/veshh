@@ -9,8 +9,12 @@ const CartItem = ({ cartItem }) => {
         <CartItemStyled>
             <CartItemImage src={imageUrl} alt={`${name}`} />
             <CartItemDetails>
-                <span className='name'>{name}</span>
-                <span className='amount'>{quantity} x &#8377;{price}</span>
+                <div className='name'>{name}</div>
+                <div className='amount'>
+                    <span className=''>{quantity} x &#8377;{price}</span>
+                    <span> &mdash; </span>
+                    <span className='total'><b> &#8377;{quantity * price}</b></span>
+                </div>
             </CartItemDetails>
         </CartItemStyled>
     )
