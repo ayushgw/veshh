@@ -17,7 +17,7 @@ import Notification from './Notification/Notification'
 
 const App = () => {
   const dispatch = useDispatch();
-  const { isOpen } = useSelector(store => store.modal);
+  // const { isOpen } = useSelector(store => store.modal);
   const { isLoading: isLoadingUser, user, message } = useSelector(store => store.user);
   const [notificationAlert, setNotificationAlert] = useState(false)
 
@@ -34,7 +34,7 @@ const App = () => {
 
   useEffect(() => {
     const user = sessionStorage.getItem('veshh_user') ? JSON.parse(sessionStorage.getItem('veshh_user')) : null;
-    if(user) {
+    if (user) {
       dispatch(setUser(user));
       return;
     }
@@ -50,8 +50,8 @@ const App = () => {
     <>
       <Notification message={message} notificationAlert={notificationAlert} />
       {isLoadingUser && <LoadingScreen />}
+      <Modal /> 
       <div className="container">
-        {isOpen && <Modal />}
         <Navbar />
         <Routes>
           <Route path="*" element={<Navigate to="/" />} />

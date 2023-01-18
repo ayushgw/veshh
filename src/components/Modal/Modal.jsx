@@ -1,5 +1,5 @@
 import React from 'react'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Button, { BUTTON_TYPES } from '../Button/Button'
 import { clearCart } from '../../features/cartSlice'
@@ -9,10 +9,11 @@ import { ModalContainer, ModalContent, ModalButtons } from './styles';
 
 const Modal = () => {
     const dispatch = useDispatch();
+    const { isOpen } = useSelector(store => store.modal);
 
     return (
-        <ModalContainer>
-            <ModalContent>
+        <ModalContainer isOpen={isOpen} onClick={() => dispatch(closeModal())}>
+            <ModalContent isOpen={isOpen}>
                 <h4>Are you sure yo want to remove all items from your shopping cart?</h4>
                 <ModalButtons>
                     <Button

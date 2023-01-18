@@ -4,23 +4,32 @@ export const ModalContainer = styled.aside`
     position: fixed;
     top: 0;
     left: 0;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.7);
     z-index: 10;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+
+    visibility: ${props => (props.isOpen ? 'visible' : 'hidden')};
+    opacity: ${props => (props.isOpen ? 1 : 0)};
+    transition: 0.1s all ease-in;
 `
 
 export const ModalContent = styled.div`
-    background: var(--clr-white);
     width: 80vw;
-    max-width: 400px;
-    border-radius: var(--radius);
+    max-width: 25rem;
+    border-radius: ;
     padding: 2rem 1rem;
     text-align: center;
     background: white;
+    z-index: 99;
+
+    transform: ${props => (props.isOpen ? 'scale(1)' : 'scale(0.7)')};
+    transition: 0.15s all ease-in;
 
     & > h4 {
         margin-top: 0;

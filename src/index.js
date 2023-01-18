@@ -25,4 +25,3 @@ root.render(
 // TODO: Fix grid - products width bug
 // TODO: Replace alerts with modal
 // TODO: Confirmation modal on payment successful & navigate to shop
-// TODO: Use CSS Grid in cart dropdown
