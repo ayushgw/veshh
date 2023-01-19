@@ -1,5 +1,16 @@
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import { BaseButton, GoogleSignInButton, InvertedButton } from '../Button/styles'
+
+const dropdownAnimation = keyframes`
+    from {
+        transform: translateY(-10px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+`
 
 export const DropdownBackdrop = styled.div`
     position: absolute;
@@ -32,10 +43,9 @@ export const Dropdown = styled.div`
         text-transform: uppercase;
     }
 
-    opacity: ${props => (props.isCartOpen ? 1 : 0)};
-    transform: ${props => (props.isCartOpen ? 'scale(1,1)' : 'scale(0,0)')};
-    transform-origin: top;
-    transition: 0.1s all ease-out;
+    animation: ${dropdownAnimation} 0.2s ease-in-out;
+    transform-origin: top right;
+    display: ${({isCartOpen}) => isCartOpen ? 'flex' : 'none'};
 `
 
 export const LinkButton = styled.button`

@@ -36,10 +36,6 @@ const Navbar = () => {
         }
         <CartIcon />
       </NavLinks>
-      {/* {isCartOpen
-        ? <CartDropdown />
-        : null
-      } */}
       <CartDropdown isCartOpen={isCartOpen} />
     </StyledNavbar>
   )
