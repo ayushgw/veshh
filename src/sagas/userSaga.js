@@ -32,7 +32,7 @@ function* workEmailSignInStart({ payload: { email, password } }) {
         const userSnapshot = yield call(() => getUserSnapshot(user));
         yield call(() => handleSignInSuccess(userSnapshot));
     } catch (error) {
-        yield put(signInFailure(error));
+        return yield put(signInFailure(error));
     }
 }
 

@@ -1,25 +1,21 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import Button, { BUTTON_TYPES } from '../Button/Button'
-import { clearCart } from '../../features/cartSlice'
+
 import { closeModal } from '../../features/modalSlice'
 
-import { ModalContainer, ModalContent, ModalButtons } from './styles';
+import { ModalWrap, ModalBackdrop, ModalContent, ModalButtons } from './styles';
 
 const Modal = ({ isOpen, type, content }) => {
     const dispatch = useDispatch();
 
-    /* 
-        Modaltype
-        1. alert : { body, buttonText, buttonOperation }
-
-        2. confirmation : { body, button1Text, button1Operation, button2Text, button2Operation }
-    */
+    if (type !== 'alert' && type !== 'confirm') return;
 
     return (
-        <ModalContainer isOpen={isOpen} onClick={() => dispatch(closeModal())}>
-            <ModalContent isOpen={isOpen}>
+        <ModalWrap isOpen={isOpen}>
+            <ModalBackdrop onClick={() => dispatch(closeModal())}></ModalBackdrop>
+            <ModalContent isOpen={isOpen} onClick={() => { console.log('content') }}>
                 {
                     type === 'alert' && (
                         <>
@@ -27,10 +23,10 @@ const Modal = ({ isOpen, type, content }) => {
                             <ModalButtons>
                                 <Button
                                     buttonType={BUTTON_TYPES.base}
-                                    onClick={() => { }}
+                                    onClick={content.get('buttonCallback')}
                                     className="nohover"
                                 >
-                                    okay
+                                    {content.get('buttonText')}
                                 </Button>
                             </ModalButtons>
                         </>
@@ -60,7 +56,7 @@ const Modal = ({ isOpen, type, content }) => {
                     )
                 }
             </ModalContent>
-        </ModalContainer>
+        </ModalWrap>
     );
 
     // return (

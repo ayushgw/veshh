@@ -1,5 +1,7 @@
 import React from 'react'
 
+// import { ReactComponent as Spinner } from '../../assets/spinner.svg';
+
 import { Wrap, Background, Content } from './styles'
 
 const LoadingScreen = () => {
@@ -10,6 +12,7 @@ const LoadingScreen = () => {
                 {/* <h1 style={{ color: 'lightgray' }}>
                     ...
                 </h1> */}
+                {/* <Spinner /> */}
             </Content>
         </Wrap>
     )

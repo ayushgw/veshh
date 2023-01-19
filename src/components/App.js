@@ -1,36 +1,21 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
-import Modal from './Modal/Modal'
 import Navbar from './Navbar/Navbar'
-import LoadingScreen from './LoadingScreen/LoadingScreen'
 import HomePage from '../routes/HomePage/HomePage'
 import AuthPage from '../routes/AuthPage/AuthPage'
 import ShopPage from '../routes/ShopPage/ShopPage'
 import CheckoutPage from '../routes/CheckoutPage/CheckoutPage'
 import CategoryPage from '../routes/CategoryPage/CategoryPage'
+import GlobalEvents from './GlobalEvents/GlobalEvents'
 
 import { checkUserSession, setUser } from '../features/userSlice'
 import { setCart } from '../features/cartSlice'
-import Notification from './Notification/Notification'
 
 const App = () => {
   const dispatch = useDispatch();
-  const { isOpen, type, content } = useSelector(store => store.modal);
-  const { isLoading: isLoadingUser, user, message } = useSelector(store => store.user);
-  const [notificationAlert, setNotificationAlert] = useState(false)
-
-  useEffect(() => {
-    if (!message) return;
-
-    setTimeout(() => {
-      setNotificationAlert(true);
-    }, 400)
-    setTimeout(() => {
-      setNotificationAlert(false);
-    }, 4000)
-  }, [message])
+  const { user } = useSelector(store => store.user);
 
   useEffect(() => {
     const user = sessionStorage.getItem('veshh_user') ? JSON.parse(sessionStorage.getItem('veshh_user')) : null;
@@ -48,9 +33,7 @@ const App = () => {
 
   return (
     <>
-      <Notification message={message} notificationAlert={notificationAlert} />
-      {isLoadingUser && <LoadingScreen />}
-      <Modal isOpen={isOpen} type={type} content={content} /> 
+      <GlobalEvents />
       <div className="container">
         <Navbar />
         <Routes>

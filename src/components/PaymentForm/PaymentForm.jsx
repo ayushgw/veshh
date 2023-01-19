@@ -1,14 +1,17 @@
 import React from 'react'
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 
-import { openModal } from '../../features/modalSlice';
+import { closeModal, openModal } from '../../features/modalSlice';
 
 import { BUTTON_TYPES } from '../Button/Button';
 import { PaymentFormStyled, Form, PaymentButton, CardElementWrap } from './styles'
+import { clearCart } from '../../features/cartSlice';
 
 const PaymentForm = () => {
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const stripe = useStripe();
     const elements = useElements();
@@ -48,8 +51,17 @@ const PaymentForm = () => {
             alert(paymentResult.error);
         } else {
             if (paymentResult.paymentIntent.status === 'succeeded') {
-                dispatch(openModal());
-                alert('Payment Successful');
+                const content = new Map();
+                content.set('text', 'Greetings! Your payment has been successfull.');
+                content.set('buttonText', 'okay');
+                content.set('buttonCallback', () => {
+                    dispatch(clearCart());
+                    dispatch(closeModal());
+                    navigate('/shop');
+                });
+        
+                const modalProps = { type: 'alert', content: content };
+                dispatch(openModal(modalProps));
             }
         }
     }

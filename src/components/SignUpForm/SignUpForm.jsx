@@ -5,7 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import FormInput from '../FormInput/FormInput';
 import Button, { BUTTON_TYPES } from '../Button/Button';
 
-import { signUpStart } from '../../features/userSlice';
+import { resetError, signUpStart } from '../../features/userSlice';
+import { closeModal, openModal } from '../../features/modalSlice';
 
 import { SignUpContainer } from './styles'
 
@@ -19,15 +20,32 @@ const defaultFormFields = {
 const SignUpForm = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const { hasSignedUp } = useSelector(store => store.user);
+    const { hasSignedUp, error } = useSelector(store => store.user);
 
     const [formFields, setFormFields] = useState(defaultFormFields);
     const { displayName, email, password, confirmPassword } = formFields;
 
+    const fireModal = (errorText) => {
+        const content = new Map();
+        content.set('text', errorText);
+        content.set('buttonText', 'okay');
+        content.set('buttonCallback', () => {
+            // setFormFields(defaultFormFields);
+            dispatch(closeModal());
+            dispatch(resetError());
+        });
+
+        const modalProps = { type: 'alert', content: content };
+        dispatch(openModal(modalProps));
+    }
+
+    if (error && error.code === 'auth/email-already-in-use') {
+        fireModal('Email is already registered. Try signing in.')
+    }
+
     useEffect(() => {
         if (hasSignedUp) {
-            // setFormFields(defaultFormFields); // reset form fields
-            navigate(0);
+            navigate(0); // auto resets form fields
         }
     }, [hasSignedUp, navigate])
 
@@ -39,15 +57,7 @@ const SignUpForm = () => {
             return;
         }
 
-        try {
-            dispatch(signUpStart({ displayName, email, password }));
-        } catch (error) {
-            if (error.code === 'auth/email-already-in-use') {
-                alert('Cannot create user, email already in use!');
-            } else {
-                console.log('user creation error', error);
-            }
-        }
+        dispatch(signUpStart({ displayName, email, password }));
     }
 
     const handleChange = (event) => {

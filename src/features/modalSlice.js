@@ -11,13 +11,13 @@ const modalSlice = createSlice({
     initialState,
     reducers: {
         openModal: (state, { payload }) => {
-            console.log(payload);
+            document.body.style.overflow = 'none';
             state.type = payload.type;
             state.content = payload.content;
             state.isOpen = true;
         },
-        closeModal: (state, { payload }) => {
-            console.log(payload);
+        closeModal: (state) => {
+            document.body.style.overflow = 'unset';
             state.isOpen = false;
         }
     },
