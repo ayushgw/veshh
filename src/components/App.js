@@ -17,7 +17,7 @@ import Notification from './Notification/Notification'
 
 const App = () => {
   const dispatch = useDispatch();
-  // const { isOpen } = useSelector(store => store.modal);
+  const { isOpen, type, content } = useSelector(store => store.modal);
   const { isLoading: isLoadingUser, user, message } = useSelector(store => store.user);
   const [notificationAlert, setNotificationAlert] = useState(false)
 
@@ -50,7 +50,7 @@ const App = () => {
     <>
       <Notification message={message} notificationAlert={notificationAlert} />
       {isLoadingUser && <LoadingScreen />}
-      <Modal /> 
+      <Modal isOpen={isOpen} type={type} content={content} /> 
       <div className="container">
         <Navbar />
         <Routes>

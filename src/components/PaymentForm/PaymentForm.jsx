@@ -1,13 +1,15 @@
 import React from 'react'
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 
-import { BUTTON_TYPES } from '../Button/Button';
+import { openModal } from '../../features/modalSlice';
 
+import { BUTTON_TYPES } from '../Button/Button';
 import { PaymentFormStyled, Form, PaymentButton, CardElementWrap } from './styles'
 
 const PaymentForm = () => {
+    const dispatch = useDispatch();
     const stripe = useStripe();
     const elements = useElements();
     const [isPaymentProcessing, setIsPaymentProcessing] = useState(false);
@@ -46,6 +48,7 @@ const PaymentForm = () => {
             alert(paymentResult.error);
         } else {
             if (paymentResult.paymentIntent.status === 'succeeded') {
+                dispatch(openModal());
                 alert('Payment Successful');
             }
         }

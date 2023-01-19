@@ -83,7 +83,7 @@ export const TableFooter = styled.div`
     align-items: center;
     width: 100%;
 
-    & button.checkout {
+    & button.trash {
         background: none;
         border: none;
         font-size: 15px;

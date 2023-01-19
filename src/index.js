@@ -22,9 +22,8 @@ root.render(
 );
 
 
-// TODO - Fix cart dropdown animation using keyframes
+// TODO - Confirmation modal on payment successful & navigate to shop
 // TODO - Fix grid - products width bug
 // TODO - Replace alerts with modal
-// TODO - Confirmation modal on payment successful & navigate to shop
 // TODO - Replace products data with JS Maps 
 // TODO - Create git tag v1.0 -- JS Version
