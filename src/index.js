@@ -22,8 +22,4 @@ root.render(
 );
 
 
-// TODO - Confirmation modal on payment successful & navigate to shop
 // TODO - Fix grid - products width bug
-// TODO - Replace alerts with modal
-// TODO - Replace products data with JS Maps 
-// TODO - Create git tag v1.0 -- JS Version

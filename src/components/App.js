@@ -3,12 +3,12 @@ import { Routes, Route, Navigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
 import Navbar from './Navbar/Navbar'
+import GlobalEvents from './GlobalEvents/GlobalEvents'
 import HomePage from '../routes/HomePage/HomePage'
 import AuthPage from '../routes/AuthPage/AuthPage'
 import ShopPage from '../routes/ShopPage/ShopPage'
 import CheckoutPage from '../routes/CheckoutPage/CheckoutPage'
 import CategoryPage from '../routes/CategoryPage/CategoryPage'
-import GlobalEvents from './GlobalEvents/GlobalEvents'
 
 import { checkUserSession, setUser } from '../features/userSlice'
 import { setCart } from '../features/cartSlice'
