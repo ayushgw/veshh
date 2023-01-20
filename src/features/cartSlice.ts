@@ -1,5 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+// interface CartItem {
+
+// }
+
+// interface {
+//     isCartOpen: Boolean;
+//     cartItems: CartItem[];
+// }
+
 const initialState = {
     isCartOpen: false,
     cartItems: [],
@@ -12,6 +21,7 @@ const cartSlice = createSlice({
     initialState,
     reducers: {
         setCart: (state, { payload }) => {
+            console.log(payload);
             const cartItems = payload;
             state.cartItems = cartItems;
             state.cartItemsCount = cartItems.reduce((count, cartItem) => count + cartItem.quantity, 0);

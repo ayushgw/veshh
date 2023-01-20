@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import CheckoutItem from '../CheckoutItem/CheckoutItem';
 import PaymentForm from '../PaymentForm/PaymentForm';
 
-import { clearCart } from '../../features/cartSlice.js';
+import { clearCart } from '../../features/cartSlice.ts';
 import { closeModal, openModal } from '../../features/modalSlice.ts'
 
 import { CheckoutContainer, Header, CheckoutTableStyled, HeaderBlock, TableHeader, CheckoutTotal, EmptyText, TableFooter, TrashIcon } from './styles'
