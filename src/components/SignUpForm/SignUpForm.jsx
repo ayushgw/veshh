@@ -6,7 +6,7 @@ import FormInput from '../FormInput/FormInput';
 import Button, { BUTTON_TYPES } from '../Button/Button';
 
 import { resetError, signUpStart } from '../../features/userSlice';
-import { closeModal, openModal } from '../../features/modalSlice';
+import { closeModal, openModal } from '../../features/modalSlice.ts';
 
 import { SignUpContainer } from './styles'
 

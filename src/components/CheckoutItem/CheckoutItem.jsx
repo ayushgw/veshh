@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux';
 
-import { updateQuantityOrRemoveItem } from '../../features/cartSlice';
+import { updateQuantityOrRemoveItem } from '../../features/cartSlice.js';
 
 import { CheckoutItemStyled, CheckoutItemImageContainer, CheckoutItemRemoveButton } from './styles'
 

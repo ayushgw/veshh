@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import CategoryPreview from '../CategoryPreview/CategoryPreview';
 
-import { getProductsFetch } from '../../features/productsSlice'
+import { getProductsFetch } from '../../features/productsSlice.ts'
 import Loader from '../Loader/Loader';
 
 const Shop = () => {

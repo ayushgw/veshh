@@ -1,23 +1,31 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-const initialState = {
+interface ModalState extends Payload {
+    isOpen: Boolean;
+}
+
+interface Payload {
+    type: String;
+    content: Map<String, String>;
+}
+
+const initialState: ModalState = {
     isOpen: false,
-    type: null,
-    content: null
+    type: '',
+    content: new Map([])
 };
 
 const modalSlice = createSlice({
     name: 'modal',
     initialState,
     reducers: {
-        openModal: (state, { payload }) => {
-            document.body.style.overflow = 'none';
+        openModal: (state, { payload }: PayloadAction<Payload>) => {
+            console.log(payload);
             state.type = payload.type;
             state.content = payload.content;
             state.isOpen = true;
         },
         closeModal: (state) => {
-            document.body.style.overflow = 'unset';
             state.isOpen = false;
         }
     },

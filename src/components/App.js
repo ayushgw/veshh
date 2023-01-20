@@ -11,7 +11,7 @@ import CheckoutPage from '../routes/CheckoutPage/CheckoutPage'
 import CategoryPage from '../routes/CategoryPage/CategoryPage'
 
 import { checkUserSession, setUser } from '../features/userSlice'
-import { setCart } from '../features/cartSlice'
+import { setCart } from '../features/cartSlice.js'
 
 const App = () => {
   const dispatch = useDispatch();

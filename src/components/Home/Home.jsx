@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import Loader from '../Loader/Loader'
 import Category from '../Category/Category'
 
-import { getProductsFetch } from '../../features/productsSlice'
+import { getProductsFetch } from '../../features/productsSlice.ts'
 
 import { HomeStyled } from './styles'
 

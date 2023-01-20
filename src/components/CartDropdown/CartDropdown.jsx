@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import Button, { BUTTON_TYPES } from '../Button/Button'
 import CartItem from '../CartItem/CartItem'
-import { toggleIsCartOpen } from '../../features/cartSlice'
+import { toggleIsCartOpen } from '../../features/cartSlice.js'
 
 import { DropdownBackdrop, Dropdown, Items, EmptyMessage, LinkButton, Subtotal } from './styles'
 

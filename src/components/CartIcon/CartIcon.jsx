@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { useDispatch, useSelector } from 'react-redux';
-import { toggleIsCartOpen } from '../../features/cartSlice'
+import { toggleIsCartOpen } from '../../features/cartSlice.js'
 
 import { CartIconComponent, CartCount, CartIconImage } from './styles'
 

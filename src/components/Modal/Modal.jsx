@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 
 import Button, { BUTTON_TYPES } from '../Button/Button'
 
-import { closeModal } from '../../features/modalSlice'
+import { closeModal } from '../../features/modalSlice.ts'
 
 import { ModalWrap, ModalBackdrop, ModalContent, ModalButtons } from './styles';
 

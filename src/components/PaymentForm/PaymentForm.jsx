@@ -4,11 +4,11 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 
-import { closeModal, openModal } from '../../features/modalSlice';
+import { closeModal, openModal } from '../../features/modalSlice.ts';
 
 import { BUTTON_TYPES } from '../Button/Button';
 import { PaymentFormStyled, Form, PaymentButton, CardElementWrap } from './styles'
-import { clearCart } from '../../features/cartSlice';
+import { clearCart } from '../../features/cartSlice.js';
 
 const PaymentForm = () => {
     const navigate = useNavigate();

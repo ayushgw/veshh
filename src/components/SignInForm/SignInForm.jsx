@@ -5,7 +5,7 @@ import FormInput from '../FormInput/FormInput'
 import Button, { BUTTON_TYPES } from '../Button/Button';
 
 import { googleSignInStart, emailSignInStart, resetError } from '../../features/userSlice';
-import { closeModal, openModal } from '../../features/modalSlice';
+import { closeModal, openModal } from '../../features/modalSlice.ts';
 
 import { FormButtons, FormStyled, Heading } from './styles'
 

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Loader from '../Loader/Loader';
 import ProductCard from '../ProductCard/ProductCard';
 
-import { getProductsFetch } from '../../features/productsSlice';
+import { getProductsFetch } from '../../features/productsSlice.ts';
 
 import { CategoryProducts, CategoryTitle, Error, ErrorImage, ErrorText, ErrorLink } from './styles'
 

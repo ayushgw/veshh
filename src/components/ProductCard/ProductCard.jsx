@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 
 import { BUTTON_TYPES } from '../Button/Button'
 
-import { addItemToCart } from '../../features/cartSlice';
+import { addItemToCart } from '../../features/cartSlice.js';
 
 import { CardButton, CardFooter, CardImage, ProductCardStyled } from './styles'
 

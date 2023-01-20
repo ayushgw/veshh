@@ -1,5 +1,5 @@
 import { put, call, takeEvery } from 'redux-saga/effects';
-import { getProductsFailure, getProductsSuccess } from '../features/productsSlice';
+import { getProductsFailure, getProductsSuccess } from '../features/productsSlice.ts';
 
 import { getCategoriesAndDocuments } from "../utils/firebase";
 
