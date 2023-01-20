@@ -1,15 +1,24 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-// interface CartItem {
+import { Item } from './productsSlice';
 
-// }
+interface CartItem extends Item {
+    quantity: number;
+}
 
-// interface {
-//     isCartOpen: Boolean;
-//     cartItems: CartItem[];
-// }
+interface CartState {
+    isCartOpen: Boolean;
+    cartItems: CartItem[];
+    cartItemsCount: number;
+    cartTotal: number;
+}
 
-const initialState = {
+interface PayloadUpdateQuantityOrRemoveItem {
+    id: number;
+    flag: number | null;
+}
+
+const initialState: CartState = {
     isCartOpen: false,
     cartItems: [],
     cartItemsCount: 0,
@@ -20,16 +29,15 @@ const cartSlice = createSlice({
     name: 'cart',
     initialState,
     reducers: {
-        setCart: (state, { payload }) => {
-            console.log(payload);
+        setCart: (state, { payload }: PayloadAction<CartItem[]>) => {
             const cartItems = payload;
             state.cartItems = cartItems;
-            state.cartItemsCount = cartItems.reduce((count, cartItem) => count + cartItem.quantity, 0);
-            state.cartTotal = cartItems.reduce((total, cartItem) => total + (cartItem.price * cartItem.quantity), 0);
+            state.cartItemsCount = cartItems.reduce((count: number, cartItem: CartItem): number => count + cartItem.quantity, 0);
+            state.cartTotal = cartItems.reduce((total: number, cartItem: CartItem): number => total + (cartItem.price * cartItem.quantity), 0);
             
             localStorage.setItem('veshh_cart_items', JSON.stringify(state.cartItems));
         },
-        addItemToCart: (state, actions) => {
+        addItemToCart: (state, actions: PayloadAction<CartItem>) => {
             const item = actions.payload;
             const { cartItems } = state;
 
@@ -55,14 +63,14 @@ const cartSlice = createSlice({
 
             cartSlice.caseReducers.setCart(state, actionsObj);
         },
-        updateQuantityOrRemoveItem: (state, { payload }) => {
+        updateQuantityOrRemoveItem: (state, { payload }: PayloadAction<PayloadUpdateQuantityOrRemoveItem>) => {
             const { id, flag } = payload;
             const { cartItems } = state;
 
             const foundItem = cartItems.find((cartItem) => cartItem.id === id);
 
             let updatedCartItems;
-            if (!flag || (flag === -1 && foundItem.quantity === 1)) {
+            if (!flag || (flag === -1 && foundItem && foundItem.quantity === 1)) {
                 updatedCartItems = cartItems.filter((cartItem) => cartItem.id !== id);
             } else {
                 updatedCartItems = cartItems.map((cartItem) => cartItem.id === id ? { ...cartItem, quantity: cartItem.quantity + flag } : cartItem);
