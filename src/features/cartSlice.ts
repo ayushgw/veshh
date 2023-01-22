@@ -1,24 +1,24 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { Item } from './productsSlice';
+import { IItem } from './productsSlice';
 
-interface CartItem extends Item {
+interface ICartItem extends IItem {
     quantity: number;
 }
 
-interface CartState {
+interface ICartState {
     isCartOpen: Boolean;
-    cartItems: CartItem[];
+    cartItems: ICartItem[];
     cartItemsCount: number;
     cartTotal: number;
 }
 
-interface PayloadUpdateQuantityOrRemoveItem {
+interface IPayloadUpdateQuantityOrRemoveItem {
     id: number;
     flag: number | null;
 }
 
-const initialState: CartState = {
+const initialState: ICartState = {
     isCartOpen: false,
     cartItems: [],
     cartItemsCount: 0,
@@ -29,15 +29,15 @@ const cartSlice = createSlice({
     name: 'cart',
     initialState,
     reducers: {
-        setCart: (state, { payload }: PayloadAction<CartItem[]>) => {
+        setCart: (state, { payload }: PayloadAction<ICartItem[]>) => {
             const cartItems = payload;
             state.cartItems = cartItems;
-            state.cartItemsCount = cartItems.reduce((count: number, cartItem: CartItem): number => count + cartItem.quantity, 0);
-            state.cartTotal = cartItems.reduce((total: number, cartItem: CartItem): number => total + (cartItem.price * cartItem.quantity), 0);
+            state.cartItemsCount = cartItems.reduce((count: number, cartItem: ICartItem): number => count + cartItem.quantity, 0);
+            state.cartTotal = cartItems.reduce((total: number, cartItem: ICartItem): number => total + (cartItem.price * cartItem.quantity), 0);
             
             localStorage.setItem('veshh_cart_items', JSON.stringify(state.cartItems));
         },
-        addItemToCart: (state, actions: PayloadAction<CartItem>) => {
+        addItemToCart: (state, actions: PayloadAction<ICartItem>) => {
             const item = actions.payload;
             const { cartItems } = state;
 
@@ -63,7 +63,7 @@ const cartSlice = createSlice({
 
             cartSlice.caseReducers.setCart(state, actionsObj);
         },
-        updateQuantityOrRemoveItem: (state, { payload }: PayloadAction<PayloadUpdateQuantityOrRemoveItem>) => {
+        updateQuantityOrRemoveItem: (state, { payload }: PayloadAction<IPayloadUpdateQuantityOrRemoveItem>) => {
             const { id, flag } = payload;
             const { cartItems } = state;
 

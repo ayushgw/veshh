@@ -1,15 +1,15 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface ModalState extends Payload {
+interface IModalState extends IPayload {
     isOpen: Boolean;
 }
 
-interface Payload {
+interface IPayload {
     type: String;
     content: Map<String, String>;
 }
 
-const initialState: ModalState = {
+const initialState: IModalState = {
     isOpen: false,
     type: '',
     content: new Map([])
@@ -19,7 +19,7 @@ const modalSlice = createSlice({
     name: 'modal',
     initialState,
     reducers: {
-        openModal: (state, { payload }: PayloadAction<Payload>) => {
+        openModal: (state, { payload }: PayloadAction<IPayload>) => {
             console.log(payload);
             state.type = payload.type;
             state.content = payload.content;

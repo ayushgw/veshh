@@ -30,7 +30,7 @@ const Navbar = () => {
           </span>)
         }
         <NavLink to="/shop">shop</NavLink>
-        {user
+        {isUserPresent
           ? (<NavLink as='span' onClick={() => dispatch(signOutStart())}>sign out</NavLink>)
           : (<NavLink to="/auth">login</NavLink>)
         }

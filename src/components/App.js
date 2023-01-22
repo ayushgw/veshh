@@ -39,7 +39,7 @@ const App = () => {
         <Routes>
           <Route path="*" element={<Navigate to="/" />} />
           <Route path="/" element={<HomePage />} />
-          {!user && <Route path="/auth" element={<AuthPage />} />}
+          {!user.id && <Route path="/auth" element={<AuthPage />} />}
           <Route path="/shop">
             <Route index element={<ShopPage />} />
             <Route path="/shop/:category" element={<CategoryPage />} />

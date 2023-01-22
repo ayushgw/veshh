@@ -4,7 +4,9 @@ import { signInSuccess, signInFailure, signOutFailure, signOutSuccess, signUpSuc
 import { getCurrentUser, createUserDocumentFromAuth, signInWithGooglePopup, signInAuthUserWithEmailAndPassword, signOutUser, createAuthUserWithEmailAndPassword } from "../utils/firebase";
 
 function* handleSignInSuccess(userSnapshot) {
-    yield put(signInSuccess({ id: userSnapshot.id, ...userSnapshot.data() }));
+    const userdata = userSnapshot.data();
+    delete userdata["createdAt"];
+    yield put(signInSuccess({ id: userSnapshot.id, ...userdata }));
 }
 
 function* getUserSnapshot(userAuth, additionalInfo) {

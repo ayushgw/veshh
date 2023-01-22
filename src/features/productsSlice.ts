@@ -1,25 +1,25 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-export interface Item {
+export interface IItem {
     id: number;
     imageUrl: string;
     name: string;
     price: number;
 }
 
-interface Product {
+interface IProduct {
     id: number,
     title: string;
     imageUrl: string;
-    items: Item[];
+    items: IItem[];
 }
 
-interface ProductsState {
-    products: Product[];
+interface IProductsState {
+    products: IProduct[];
     isLoading: Boolean;
 }
 
-const initialState: ProductsState = {
+const initialState: IProductsState = {
     products: [],
     isLoading: false,
 };
@@ -31,7 +31,7 @@ const productsSlice = createSlice({
         getProductsFetch: (state) => {
             state.isLoading = true;
         },
-        getProductsSuccess: (state, { payload }: PayloadAction<Product[]>) => {
+        getProductsSuccess: (state, { payload }: PayloadAction<IProduct[]>) => {
             state.products = payload;
             state.isLoading = false;
         },
