@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { BaseButton, GoogleSignInButton, InvertedButton } from './styles'
 
 import { ReactComponent as SpinnerSvg } from '../../assets/spinner.svg';

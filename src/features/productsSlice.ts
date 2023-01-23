@@ -7,7 +7,7 @@ export interface IItem {
     price: number;
 }
 
-interface IProduct {
+export interface IProduct {
     id: number,
     title: string;
     imageUrl: string;
