@@ -2,9 +2,9 @@ import { configureStore } from "@reduxjs/toolkit";
 import createSagaMiddleware from "@redux-saga/core";
 
 import userReducer from '../features/userSlice';
-import cartReducer from '../features/cartSlice.ts';
-import productsReducer from '../features/productsSlice.ts';
-import modalReducer from '../features/modalSlice.ts';
+import cartReducer from '../features/cartSlice';
+import productsReducer from '../features/productsSlice';
+import modalReducer from '../features/modalSlice';
 
 import { rootSaga } from "../sagas/rootSaga";
 
@@ -20,3 +20,6 @@ export const store = configureStore({
 });
 
 saga.run(rootSaga)
+
+export type RootState = ReturnType<typeof store.getState>
+export type AppDispatch = typeof store.dispatch
