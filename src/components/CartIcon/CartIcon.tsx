@@ -1,13 +1,11 @@
-import React from 'react'
-
-import { useDispatch, useSelector } from 'react-redux';
-import { toggleIsCartOpen } from '../../features/cartSlice.ts'
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { toggleIsCartOpen } from '../../features/cartSlice'
 
 import { CartIconComponent, CartCount, CartIconImage } from './styles'
 
 const CartIcon = () => {
-    const dispatch = useDispatch();
-    const { cartItemsCount } = useSelector(store => store.cart);
+    const dispatch = useAppDispatch();
+    const { cartItemsCount } = useAppSelector(store => store.cart);
 
     const toggleCart = () => {
         document.body.style.overflow = 'hidden';
