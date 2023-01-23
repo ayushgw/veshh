@@ -21,8 +21,8 @@ export const DropdownBackdrop = styled.div`
     background: #57505094;
     z-index: 9;
 
-    visibility: ${props => (props.isCartOpen ? 'visible' : 'hidden')};
-    opacity: ${props => (props.isCartOpen ? 1 : 0)};
+    visibility: ${({ isCartOpen }) => isCartOpen ? 'visible' : 'hidden'};
+    opacity: ${({ isCartOpen }) => isCartOpen ? 1 : 0};
     transition: 0.1s all ease-in;
 `
 
@@ -45,7 +45,7 @@ export const Dropdown = styled.div`
 
     animation: ${dropdownAnimation} 0.2s ease-in-out;
     transform-origin: top right;
-    display: ${({isCartOpen}) => isCartOpen ? 'flex' : 'none'};
+    display: ${({ isCartOpen }) => isCartOpen ? 'flex' : 'none'};
 `
 
 export const LinkButton = styled.button`

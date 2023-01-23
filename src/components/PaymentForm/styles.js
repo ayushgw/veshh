@@ -28,6 +28,7 @@ export const Form = styled.form`
 
 export const CardElementWrap = styled.div`
     padding: 1.1rem 5px;
+    margin: 1rem 0;
     border: 1px solid black;
     box-shadow: 0px 0px 4px palegoldenrod;
 `

@@ -1,4 +1,3 @@
-import React from 'react'
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -70,7 +69,7 @@ const PaymentForm = () => {
         <PaymentFormStyled>
             <Form onSubmit={paymentHandler}>
                 <h2>Credit Card Payment</h2>
-                <CardElementWrap style={{ margin: '1rem 0' }}>
+                <CardElementWrap>
                     <CardElement />
                 </CardElementWrap>
                 <PaymentButton isLoading={isPaymentProcessing} buttonType={BUTTON_TYPES.base} className="nohover">Pay Now</PaymentButton>
