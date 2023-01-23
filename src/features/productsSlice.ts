@@ -35,7 +35,8 @@ const productsSlice = createSlice({
             state.products = payload;
             state.isLoading = false;
         },
-        getProductsFailure: (state) => {
+        getProductsFailure: (state, { payload }: PayloadAction<Error>) => {
+            console.log(payload);
             state.isLoading = false;
         }
     }
