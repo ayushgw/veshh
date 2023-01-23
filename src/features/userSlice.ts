@@ -33,7 +33,6 @@ const userSlice = createSlice({
     initialState,
     reducers: {
         setUser: (state, { payload }: PayloadAction<IUser>) => {
-            console.log(payload);
             state.user = payload;
         },
         resetError: (state) => {
@@ -52,7 +51,6 @@ const userSlice = createSlice({
             state.isLoading = true;
         },
         signInSuccess: (state, { payload }: PayloadAction<IUser>) => {
-            console.log(payload);
             state.user = payload;
             state.isLoading = false;
             state.message = 'Signed in!';

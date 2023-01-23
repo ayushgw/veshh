@@ -15,7 +15,7 @@ const Modal = ({ isOpen, type, content }) => {
     return (
         <ModalWrap isOpen={isOpen}>
             <ModalBackdrop onClick={() => dispatch(closeModal())}></ModalBackdrop>
-            <ModalContent isOpen={isOpen} onClick={() => { console.log('content') }}>
+            <ModalContent isOpen={isOpen}>
                 {
                     type === 'alert' && (
                         <>
