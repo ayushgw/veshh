@@ -1,13 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface IUser {
+    createdAt: Date | null;
     displayName: string;
     email: string;
     id: string;
-}
-
-interface IError {
-    code: string;
 }
 
 interface IUserState {
@@ -15,11 +12,12 @@ interface IUserState {
     isLoading: Boolean;
     hasSignedUp: Boolean;
     message: string;
-    error: IError;
+    error: Error | null;
 }
 
 const initialState: IUserState = {
     user: {
+        createdAt: null,
         displayName: '',
         email: '',
         id: ''
@@ -27,9 +25,7 @@ const initialState: IUserState = {
     isLoading: false,
     hasSignedUp: false,
     message: '',
-    error: {
-        code: ''
-    }
+    error: null
 };
 
 const userSlice = createSlice({
@@ -62,7 +58,7 @@ const userSlice = createSlice({
             state.message = 'Signed in!';
             sessionStorage.setItem('veshh_user', JSON.stringify(payload));
         },
-        signInFailure: (state, { payload }: PayloadAction<IError>) => {
+        signInFailure: (state, { payload }: PayloadAction<Error>) => {
             // console.error("Sign in error", payload);
             state.error = payload;
             state.isLoading = false;
@@ -76,7 +72,7 @@ const userSlice = createSlice({
             state.message = 'Signed out!';
             sessionStorage.removeItem('veshh_user');
         },
-        signOutFailure: (state, { payload }: PayloadAction<IError>) => {
+        signOutFailure: (state, { payload }: PayloadAction<Error>) => {
             console.error("Sign out error", payload);
             state.error = payload;
             state.isLoading = false;
@@ -89,7 +85,7 @@ const userSlice = createSlice({
             state.isLoading = false;
             state.hasSignedUp = true;
         },
-        signUpFailure: (state, { payload }: PayloadAction<IError>) => {
+        signUpFailure: (state, { payload }: PayloadAction<Error>) => {
             console.error("Sign up error", payload);
             state.error = payload;
             state.isLoading = false;

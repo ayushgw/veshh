@@ -1,4 +1,4 @@
-import { put, call, takeEvery } from 'typed-redux-saga';
+import { put, call, takeEvery } from 'typed-redux-saga/macro';
 import { getProductsFailure, getProductsSuccess } from '../features/productsSlice';
 
 import { getCategoriesAndDocuments } from "../utils/firebase";
