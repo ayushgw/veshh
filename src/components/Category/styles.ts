@@ -1,7 +1,11 @@
 import styled from 'styled-components'
 
-export const CategoryBgImage = styled.div`
-    background-image: url(${props => props.imageUrl});
+type CategoryBgImageProps = {
+  imageUrl: string;
+}
+
+export const CategoryBgImage = styled.div<CategoryBgImageProps>`
+    background-image: url(${({imageUrl}) => imageUrl});
     width: 100%;
     height: 100%;
     background-size: cover;

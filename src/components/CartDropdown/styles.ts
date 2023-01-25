@@ -1,5 +1,6 @@
 import styled, { keyframes } from 'styled-components'
 import { BaseButton, GoogleSignInButton, InvertedButton } from '../Button/styles'
+import { CartDropdownProps } from './CartDropdown'
 
 const dropdownAnimation = keyframes`
     from {
@@ -12,7 +13,7 @@ const dropdownAnimation = keyframes`
     }
 `
 
-export const DropdownBackdrop = styled.div`
+export const DropdownBackdrop = styled.div<CartDropdownProps>`
     position: absolute;
     top: 0;
     left: 0;
@@ -26,7 +27,7 @@ export const DropdownBackdrop = styled.div`
     transition: 0.1s all ease-in;
 `
 
-export const Dropdown = styled.div`
+export const Dropdown = styled.div<CartDropdownProps>`
     position: absolute;
     width: 20rem;
     height: 30rem;
@@ -38,11 +39,11 @@ export const Dropdown = styled.div`
     top: 5.5rem;
     right: 3.5rem;
     z-index: 10;
-
+    
     ${BaseButton}, ${GoogleSignInButton}, ${InvertedButton} {
         text-transform: uppercase;
     }
-
+    
     animation: ${dropdownAnimation} 0.2s ease-in-out;
     transform-origin: top right;
     display: ${({ isCartOpen }) => isCartOpen ? 'flex' : 'none'};

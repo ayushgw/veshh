@@ -3,7 +3,6 @@ import styled from 'styled-components'
 export const CatgeoryPreviewStyled = styled.div`
     display: flex;
     flex-direction: column;
-    ${'' /* margin-bottom: 2rem; */}
 `
 
 export const Title = styled.span`
@@ -25,10 +24,4 @@ export const Preview = styled.div`
     @media (max-width: 850px) {
         grid-template-columns: repeat(2, auto);
     }
-    
-    ${'' /* @media (max-width: 600px) {
-        grid-template-columns: 1fr;
-        align-items: center;
-        justify-content: center;
-    } */}
 `

@@ -1,20 +1,20 @@
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react'
 
+import Loader from '../Loader/Loader';
 import CategoryPreview from '../CategoryPreview/CategoryPreview';
 
-import { getProductsFetch } from '../../features/productsSlice.ts'
-import Loader from '../Loader/Loader';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { getProductsFetch } from '../../features/productsSlice'
 
 const Shop = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(getProductsFetch());
   }, [dispatch])
 
 
-  const { products, isLoading } = useSelector(store => store.products);
+  const { products, isLoading } = useAppSelector(store => store.products);
 
   if (isLoading) {
     return <Loader />;

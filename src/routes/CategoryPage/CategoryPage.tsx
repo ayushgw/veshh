@@ -4,8 +4,12 @@ import ShopCategory from '../../components/ShopCategory/ShopCategory';
 
 import './CategoryPage.scss'
 
+type CategoryPageParams = {
+    category: string;
+}
+
 const CategoryPage = () => {
-    const { category } = useParams();
+    const { category } = useParams<keyof CategoryPageParams>() as CategoryPageParams;
 
     return (
         <ShopCategory category={category} />

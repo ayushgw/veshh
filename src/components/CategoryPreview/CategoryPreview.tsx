@@ -4,7 +4,14 @@ import ProductCard from '../ProductCard/ProductCard'
 
 import { CatgeoryPreviewStyled, Title, Preview } from './styles'
 
-const CategoryPreview = ({ title, products }) => {
+import { IItem } from '../../features/productsSlice'
+
+type CategoryPreviewProps = {
+    title: string;
+    products: IItem[];
+}
+
+const CategoryPreview = ({ title, products }: CategoryPreviewProps) => {
     const navigate = useNavigate();
 
     const handleClick = () => {

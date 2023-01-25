@@ -1,9 +1,17 @@
-import React from 'react'
 import { useNavigate } from 'react-router-dom';
 
 import { CategoryStyled, CategoryBgImage, CategoryBody, CategoryBodyHeading, CategoryBodyText } from './styles'
 
-const Category = ({ product }) => {
+export type ProductProps = {
+    title: string;
+    imageUrl: string;
+}
+
+type CategoryProps = {
+    product: ProductProps
+}
+
+const Category = ({ product }: CategoryProps) => {
     const navigate = useNavigate();
 
     const { title, imageUrl } = product;
