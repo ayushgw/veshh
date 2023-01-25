@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
 
 import FormInput from '../FormInput/FormInput';
 import Button, { BUTTON_TYPES } from '../Button/Button';
 
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { resetError, signUpStart } from '../../features/userSlice';
-import { closeModal, openModal } from '../../features/modalSlice.ts';
+import { closeModal, openModal } from '../../features/modalSlice';
 
 import { SignUpContainer } from './styles'
 
@@ -19,29 +19,42 @@ const defaultFormFields = {
 
 const SignUpForm = () => {
     const navigate = useNavigate();
-    const dispatch = useDispatch();
-    const { hasSignedUp, error } = useSelector(store => store.user);
+    const dispatch = useAppDispatch();
+    const { hasSignedUp, error } = useAppSelector(store => store.user);
 
     const [formFields, setFormFields] = useState(defaultFormFields);
     const { displayName, email, password, confirmPassword } = formFields;
 
-    const fireModal = (errorText) => {
-        const content = new Map();
-        content.set('text', errorText);
-        content.set('buttonText', 'okay');
-        content.set('buttonCallback', () => {
-            // setFormFields(defaultFormFields);
-            dispatch(closeModal());
-            dispatch(resetError());
-        });
+    // const fireModal = (errorText: string) => {
+    //     const content = new Map();
+    //     content.set('text', errorText);
+    //     content.set('buttonText', 'okay');
+    //     content.set('buttonCallback', () => {
+    //         // setFormFields(defaultFormFields);
+    //         dispatch(closeModal());
+    //         dispatch(resetError());
+    //     });
 
-        const modalProps = { type: 'alert', content: content };
-        dispatch(openModal(modalProps));
-    }
+    //     const modalProps = { type: 'alert', content: content };
+    //     dispatch(openModal(modalProps));
+    // }
 
-    if (error && error.code === 'auth/email-already-in-use') {
-        fireModal('Email is already registered. Try signing in.')
-    }
+    useEffect(() => {
+        if (error) {
+            const content = new Map();
+            content.set('text', "Could not sign up! Please check your credentials");
+            content.set('buttonText', 'okay');
+            content.set('buttonCallback', () => {
+                dispatch(closeModal());
+                dispatch(resetError());
+            });
+            dispatch(openModal({ type: 'alert', content, closeOnBackdropClick: false }))
+        }
+    }, [error, dispatch]);
+
+    // if (error && error.code === 'auth/email-already-in-use') {
+    //     fireModal('Email is already registered. Try signing in.')
+    // }
 
     useEffect(() => {
         if (hasSignedUp) {
@@ -49,7 +62,7 @@ const SignUpForm = () => {
         }
     }, [hasSignedUp, navigate])
 
-    const handleSubmit = async (event) => {
+    const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
         if (password !== confirmPassword) {
@@ -60,7 +73,7 @@ const SignUpForm = () => {
         dispatch(signUpStart({ displayName, email, password }));
     }
 
-    const handleChange = (event) => {
+    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
         setFormFields({ ...formFields, [name]: value });
     }

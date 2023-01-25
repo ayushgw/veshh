@@ -16,7 +16,7 @@ export interface IProduct {
 
 interface IProductsState {
     products: IProduct[];
-    isLoading: Boolean;
+    isLoading: boolean;
 }
 
 const initialState: IProductsState = {

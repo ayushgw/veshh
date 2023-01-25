@@ -1,18 +1,20 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface IModalState extends IPayload {
-    isOpen: Boolean;
+    isOpen: boolean;
 }
 
 interface IPayload {
     type: String;
     content: Map<String, String>;
+    closeOnBackdropClick: boolean;
 }
 
 const initialState: IModalState = {
     isOpen: false,
     type: '',
-    content: new Map([])
+    content: new Map([]),
+    closeOnBackdropClick: false
 };
 
 const modalSlice = createSlice({
@@ -23,6 +25,7 @@ const modalSlice = createSlice({
             state.type = payload.type;
             state.content = payload.content;
             state.isOpen = true;
+            state.closeOnBackdropClick = payload.closeOnBackdropClick;
         },
         closeModal: (state) => {
             state.isOpen = false;

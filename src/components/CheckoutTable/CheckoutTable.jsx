@@ -27,7 +27,7 @@ const CheckoutTable = () => {
             dispatch(closeModal());
          });
 
-        const modalProps = { type: 'confirm', content: content };
+        const modalProps = { type: 'confirm', content: content, closeOnBackdropClick: true };
         dispatch(openModal(modalProps));
     }
 

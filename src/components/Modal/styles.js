@@ -4,6 +4,8 @@ export const ModalWrap = styled.aside`
     position: fixed;
     height: 100%;
     width: 100%;
+    background: #57505094;
+    z-index: 999;
     
     display: flex;
     align-items: center;

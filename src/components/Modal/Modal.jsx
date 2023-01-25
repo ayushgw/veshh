@@ -7,15 +7,19 @@ import { closeModal } from '../../features/modalSlice.ts'
 
 import { ModalWrap, ModalBackdrop, ModalContent, ModalButtons } from './styles';
 
-const Modal = ({ isOpen, type, content }) => {
+const Modal = ({ isOpen, type, content, closeOnBackdropClick }) => {
     const dispatch = useDispatch();
 
     if (type !== 'alert' && type !== 'confirm') return;
 
     return (
-        <ModalWrap isOpen={isOpen}>
-            <ModalBackdrop onClick={() => dispatch(closeModal())}></ModalBackdrop>
-            <ModalContent isOpen={isOpen}>
+        <ModalWrap isOpen={isOpen} onClick={() => {
+            return closeOnBackdropClick ? dispatch(closeModal()) : null;
+        }}>
+            {/* <ModalBackdrop onClick={() => {
+                return closeOnBackdropClick ? dispatch(closeModal()) : null;
+            }}></ModalBackdrop> */}
+            <ModalContent isOpen={isOpen} onClick={(e) => e.stopPropagation()}>
                 {
                     type === 'alert' && (
                         <>

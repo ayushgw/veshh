@@ -7,7 +7,7 @@ interface ICartItem extends IItem {
 }
 
 interface ICartState {
-    isCartOpen: Boolean;
+    isCartOpen: boolean;
     cartItems: ICartItem[];
     cartItemsCount: number;
     cartTotal: number;

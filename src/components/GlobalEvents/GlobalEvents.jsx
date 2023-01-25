@@ -7,7 +7,7 @@ import Notification from '../Notification/Notification'
 
 const GlobalEvents = () => {
     const { isLoading, message } = useSelector(store => store.user);
-    const { isOpen, type, content } = useSelector(store => store.modal);
+    const { isOpen, type, content, closeOnBackdropClick = false } = useSelector(store => store.modal);
 
     const [notificationAlert, setNotificationAlert] = useState(false);
 
@@ -26,7 +26,7 @@ const GlobalEvents = () => {
         <>
             <Notification message={message} notificationAlert={notificationAlert} />
             {isLoading && <LoadingScreen />}
-            <Modal isOpen={isOpen} type={type} content={content} />
+            <Modal isOpen={isOpen} type={type} content={content} closeOnBackdropClick={closeOnBackdropClick} />
         </>
     )
 }
