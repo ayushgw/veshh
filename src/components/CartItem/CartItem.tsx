@@ -2,7 +2,7 @@ import { CartItemStyled, CartItemDetails, CartItemImage } from './styles'
 
 import { ICartItem } from '../../features/cartSlice'; 
 
-type CartItemProps = {
+export type CartItemProps = {
     cartItem: ICartItem
 }
 

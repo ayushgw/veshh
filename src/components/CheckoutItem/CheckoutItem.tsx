@@ -1,11 +1,13 @@
 import React from 'react'
 import { useDispatch } from 'react-redux';
 
-import { updateQuantityOrRemoveItem } from '../../features/cartSlice.ts';
+import { updateQuantityOrRemoveItem } from '../../features/cartSlice';
 
 import { CheckoutItemStyled, CheckoutItemImageContainer, CheckoutItemRemoveButton } from './styles'
 
-const CheckoutItem = ({ cartItem }) => {
+import { CartItemProps } from '../CartItem/CartItem';
+
+const CheckoutItem = ({ cartItem }: CartItemProps) => {
     const dispatch = useDispatch();
 
     const { id, name, imageUrl, price, quantity } = cartItem;

@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { LoadingAnimation } from './styles'
 
 const Loader = () => {
