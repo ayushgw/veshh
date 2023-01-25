@@ -1,5 +1,6 @@
-import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react'
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import { AuthError, AuthErrorCodes } from 'firebase/auth';
 
 import FormInput from '../FormInput/FormInput';
 import Button, { BUTTON_TYPES } from '../Button/Button';
@@ -20,41 +21,33 @@ const defaultFormFields = {
 const SignUpForm = () => {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
-    const { hasSignedUp, error } = useAppSelector(store => store.user);
+    const { hasSignedUp, signupError } = useAppSelector(store => store.user);
 
     const [formFields, setFormFields] = useState(defaultFormFields);
     const { displayName, email, password, confirmPassword } = formFields;
 
-    // const fireModal = (errorText: string) => {
-    //     const content = new Map();
-    //     content.set('text', errorText);
-    //     content.set('buttonText', 'okay');
-    //     content.set('buttonCallback', () => {
-    //         // setFormFields(defaultFormFields);
-    //         dispatch(closeModal());
-    //         dispatch(resetError());
-    //     });
-
-    //     const modalProps = { type: 'alert', content: content };
-    //     dispatch(openModal(modalProps));
-    // }
-
     useEffect(() => {
-        if (error) {
+        if (signupError as AuthError) {
             const content = new Map();
-            content.set('text', "Could not sign up! Please check your credentials");
             content.set('buttonText', 'okay');
             content.set('buttonCallback', () => {
                 dispatch(closeModal());
                 dispatch(resetError());
             });
+
+            let errorMsg = '';
+            if((signupError as AuthError).code === AuthErrorCodes.EMAIL_EXISTS) {
+                errorMsg = "Trouble signing in, email already in use!";
+            } else if((signupError as AuthError).code === AuthErrorCodes.WEAK_PASSWORD) {
+                errorMsg = "Trouble signing up, password must be atleast 6 characters!";
+            } else {
+                errorMsg = "Trouble signing up, please try again later!"
+            }
+
+            content.set('text', errorMsg);
             dispatch(openModal({ type: 'alert', content, closeOnBackdropClick: false }))
         }
-    }, [error, dispatch]);
-
-    // if (error && error.code === 'auth/email-already-in-use') {
-    //     fireModal('Email is already registered. Try signing in.')
-    // }
+    }, [signupError, dispatch]);
 
     useEffect(() => {
         if (hasSignedUp) {

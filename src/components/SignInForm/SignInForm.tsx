@@ -1,4 +1,5 @@
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
+import { AuthError, AuthErrorCodes } from 'firebase/auth';
 
 import FormInput from '../FormInput/FormInput'
 import Button, { BUTTON_TYPES } from '../Button/Button';
@@ -16,37 +17,33 @@ const defaultFormFields = {
 
 const SignInForm = () => {
     const dispatch = useAppDispatch();
-    const { error } = useAppSelector(store => store.user);
+    const { signinError } = useAppSelector(store => store.user);
 
     const [formFields, setFormFields] = useState(defaultFormFields);
     const { email, password } = formFields;
 
-    // const fireModal = (errorText: string) => {
-    //     const content = new Map();
-    //     content.set('text', errorText);
-    //     content.set('buttonText', 'okay');
-    //     content.set('buttonCallback', () => {
-    //         // setFormFields(defaultFormFields);
-    //         dispatch(closeModal());
-    //         dispatch(resetError());
-    //     });
-
-    //     const modalProps = { type: 'alert', content };
-    //     dispatch(openModal(modalProps));
-    // }
-
     useEffect(() => {
-        if (error) {
+        if (signinError as AuthError) {
             const content = new Map();
-            content.set('text', "Could not sign in! Please check your email and/or password.");
             content.set('buttonText', 'okay');
             content.set('buttonCallback', () => {
                 dispatch(closeModal());
                 dispatch(resetError());
             });
+
+            let errorMsg = '';
+            if((signinError as AuthError).code === AuthErrorCodes.USER_DELETED) {
+                errorMsg = "Trouble signing in, email does not exist!";
+            } else if((signinError as AuthError).code === AuthErrorCodes.INVALID_PASSWORD) {
+                errorMsg = "Trouble signing in, please check your password!";
+            } else {
+                errorMsg = "Trouble signing in, please check your email and/or password!"
+            }
+            
+            content.set('text', errorMsg);
             dispatch(openModal({ type: 'alert', content, closeOnBackdropClick: false }))
         }
-    }, [error, dispatch]);
+    }, [signinError, dispatch]);
 
     const signInWithGoogle = async () => {
         dispatch(googleSignInStart());

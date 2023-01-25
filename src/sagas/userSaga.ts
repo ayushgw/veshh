@@ -1,7 +1,6 @@
 import { put, call, takeEvery } from 'typed-redux-saga/macro';
 import { User } from 'firebase/auth';
 import { QueryDocumentSnapshot } from 'firebase/firestore';
-import { AuthError } from 'firebase/auth';
 
 import { signInSuccess, signInFailure, signOutFailure, signOutSuccess, signUpSuccess, setIsLoading, signUpFailure } from '../features/userSlice';
 import { getCurrentUser, createUserDocumentFromAuth, signInWithGooglePopup, signInAuthUserWithEmailAndPassword, signOutUser, createAuthUserWithEmailAndPassword, IAdditionalInfo, IUserData } from "../utils/firebase";
@@ -30,7 +29,7 @@ function* getUserSnapshot(userAuth: User, additionalInfo?: IAdditionalInfo) {
         const userSnapshot = yield* call(() => createUserDocumentFromAuth(userAuth, additionalInfo));
         return userSnapshot;
     } catch (error) {
-        yield* put(signInFailure(error as AuthError));
+        yield* put(signInFailure(error as Error));
     }
 }
 
@@ -50,7 +49,7 @@ function* workGoogleSignInStart() {
             yield* call(() => handleSignInSuccess(userSnapshot));
         }
     } catch (error) {
-        yield* put(signInFailure(error as AuthError));
+        yield* put(signInFailure(error as Error));
     }
 }
 
@@ -65,7 +64,7 @@ function* workEmailSignInStart({ payload: { email, password } }: IEmailSignInSta
         }
         
     } catch (error) {
-        return yield* put(signInFailure(error as AuthError));
+        return yield* put(signInFailure(error as Error));
     }
 }
 
@@ -80,7 +79,7 @@ function* workSignUpStart({ payload: { displayName, email, password } }: ISignUp
         }
 
     } catch (error) {
-        yield* put(signUpFailure(error as AuthError));
+        yield* put(signUpFailure(error as Error));
     }
 }
 
@@ -96,7 +95,7 @@ function* workCheckUserSession() {
         const userSnapshot = yield* call(() => getUserSnapshot(userAuth));
         yield* call(() => handleSignInSuccess(userSnapshot));
     } catch (error) {
-        yield* put(signInFailure(error as AuthError));
+        yield* put(signInFailure(error as Error));
     }
 }
 
@@ -105,7 +104,7 @@ function* workSignOutStart() {
         yield* call(() => signOutUser())
         yield* put(signOutSuccess());
     } catch (error) {
-        yield* put(signOutFailure(error as AuthError));
+        yield* put(signOutFailure(error as Error));
     }
 }
 

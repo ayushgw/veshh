@@ -16,14 +16,6 @@ export const ModalWrap = styled.aside`
     transition: 0.1s all ease-in;
 `
 
-export const ModalBackdrop = styled.div`
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: #57505094;
-    z-index: 10;
-`
-
 export const ModalContent = styled.div`
     position: relative;
     width: 80vw;

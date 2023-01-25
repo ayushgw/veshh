@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { AuthError } from 'firebase/auth';
+// import { AuthError } from 'firebase/auth';
 
 interface IUser {
     createdAt: Date | null;
@@ -18,7 +18,8 @@ interface IUserState {
     isLoading: boolean;
     hasSignedUp: boolean;
     message: string;
-    error: AuthError | null;
+    signupError: Error | null;
+    signinError: Error | null;
 }
 
 const initialState: IUserState = {
@@ -31,7 +32,8 @@ const initialState: IUserState = {
     isLoading: false,
     hasSignedUp: false,
     message: '',
-    error: null
+    signupError: null,
+    signinError: null
 };
 
 const userSlice = createSlice({
@@ -42,7 +44,8 @@ const userSlice = createSlice({
             state.user = payload;
         },
         resetError: (state) => {
-            state.error = initialState.error;
+            state.signupError = null;
+            state.signinError = null;
         },
         checkUserSession: (state) => {
             state.isLoading = true;
@@ -62,9 +65,9 @@ const userSlice = createSlice({
             state.message = 'Signed in!';
             sessionStorage.setItem('veshh_user', JSON.stringify(payload));
         },
-        signInFailure: (state, { payload }: PayloadAction<AuthError>) => {
+        signInFailure: (state, { payload }: PayloadAction<Error>) => {
             // console.error("Sign in error", payload);
-            state.error = payload;
+            state.signinError = payload;
             state.isLoading = false;
         },
         signOutStart: (state) => {
@@ -76,9 +79,9 @@ const userSlice = createSlice({
             state.message = 'Signed out!';
             sessionStorage.removeItem('veshh_user');
         },
-        signOutFailure: (state, { payload }: PayloadAction<AuthError>) => {
+        signOutFailure: (state, { payload }: PayloadAction<Error>) => {
             console.error("Sign out error", payload);
-            state.error = payload;
+            // state.error = payload;
             state.isLoading = false;
         },
         signUpStart: (state, { payload }) => {
@@ -89,9 +92,9 @@ const userSlice = createSlice({
             state.isLoading = false;
             state.hasSignedUp = true;
         },
-        signUpFailure: (state, { payload }: PayloadAction<AuthError>) => {
-            console.error("Sign up error", payload);
-            state.error = payload;
+        signUpFailure: (state, { payload }: PayloadAction<Error>) => {
+            // console.error("Sign up error", payload);
+            state.signupError = payload;
             state.isLoading = false;
         },
     },
