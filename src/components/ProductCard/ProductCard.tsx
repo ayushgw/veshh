@@ -1,14 +1,19 @@
-import React from 'react'
-import { useDispatch } from 'react-redux';
-
 import { BUTTON_TYPES } from '../Button/Button'
 
-import { addItemToCart } from '../../features/cartSlice.ts';
+import { useAppDispatch } from '../../app/hooks';
+import { addItemToCart } from '../../features/cartSlice';
 
 import { CardButton, CardFooter, CardImage, ProductCardStyled } from './styles'
 
-const ProductCard = ({ product }) => {
-    const dispatch = useDispatch();
+import { IItem } from '../../features/productsSlice';
+
+type ProductCardProps = {
+    product: IItem;
+}
+
+const ProductCard = ({ product }: ProductCardProps) => {
+    const dispatch = useAppDispatch();
+
     const { name, price, imageUrl } = product;
 
     return (

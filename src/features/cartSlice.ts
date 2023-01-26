@@ -37,7 +37,7 @@ const cartSlice = createSlice({
             
             localStorage.setItem('veshh_cart_items', JSON.stringify(state.cartItems));
         },
-        addItemToCart: (state, actions: PayloadAction<ICartItem>) => {
+        addItemToCart: (state, actions: PayloadAction<IItem>) => {
             const item = actions.payload;
             const { cartItems } = state;
 

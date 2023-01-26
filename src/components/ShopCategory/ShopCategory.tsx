@@ -1,21 +1,25 @@
 import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
 
 import Loader from '../Loader/Loader';
 import ProductCard from '../ProductCard/ProductCard';
 
-import { getProductsFetch } from '../../features/productsSlice.ts';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { getProductsFetch } from '../../features/productsSlice';
 
 import { CategoryProducts, CategoryTitle, Error, ErrorImage, ErrorText, ErrorLink } from './styles'
 
-const ShopCategory = ({ category }) => {
-    const dispatch = useDispatch();
+type ShopCategoryProps = {
+    category: string;
+}
+
+const ShopCategory = ({ category }: ShopCategoryProps) => {
+    const dispatch = useAppDispatch();
 
     useEffect(() => {
       dispatch(getProductsFetch());
     }, [dispatch])
 
-    const { isLoading, products } = useSelector(store => store.products);
+    const { isLoading, products } = useAppSelector(store => store.products);
 
     if(isLoading) {
         return <Loader />;
