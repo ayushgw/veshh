@@ -1,6 +1,10 @@
 import styled from 'styled-components'
 
-export const ModalWrap = styled.aside`
+type ModalProps = {
+    isOpen: boolean;
+} 
+
+export const ModalWrap = styled.aside<ModalProps>`
     position: fixed;
     height: 100%;
     width: 100%;
@@ -16,7 +20,7 @@ export const ModalWrap = styled.aside`
     transition: 0.1s all ease-in;
 `
 
-export const ModalContent = styled.div`
+export const ModalContent = styled.div<ModalProps>`
     position: relative;
     width: 80vw;
     max-width: 25rem;

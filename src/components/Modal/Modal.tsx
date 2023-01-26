@@ -1,15 +1,18 @@
-import { useDispatch } from 'react-redux';
+import Button, { BUTTON_TYPES } from '../Button/Button';
 
-import Button, { BUTTON_TYPES } from '../Button/Button'
-
-import { closeModal } from '../../features/modalSlice.ts'
+import { useAppDispatch } from '../../app/hooks';
+import { closeModal } from '../../features/modalSlice';
 
 import { ModalWrap, ModalContent, ModalButtons } from './styles';
 
-const Modal = ({ isOpen, type, content, closeOnBackdropClick }) => {
-    const dispatch = useDispatch();
+import { IModalState } from '../../features/modalSlice';
 
-    if (type !== 'alert' && type !== 'confirm') return;
+const Modal = ({ isOpen, type, content, closeOnBackdropClick }: IModalState) => {
+    const dispatch = useAppDispatch();
+
+    console.log(content.get('buttonCallback'));
+
+    if (type !== 'alert' && type !== 'confirm') return null;
 
     return (
         <ModalWrap isOpen={isOpen} onClick={() => {
@@ -58,34 +61,5 @@ const Modal = ({ isOpen, type, content, closeOnBackdropClick }) => {
             </ModalContent>
         </ModalWrap>
     );
-
-    // return (
-    //     <ModalContainer isOpen={isOpen} onClick={() => dispatch(closeModal())}>
-    //         <ModalContent isOpen={isOpen}>
-    //             <h4>Are you sure yo want to remove all items from your shopping cart?</h4>
-    //             <ModalButtons>
-    //                 <Button
-    //                     buttonType={BUTTON_TYPES.base}
-    //                     onClick={() => {
-    //                         dispatch(clearCart());
-    //                         dispatch(closeModal());
-    //                     }}
-    //                     className="nohover"
-    //                 >
-    //                     confirm
-    //                 </Button>
-    //                 <Button
-    //                     buttonType={BUTTON_TYPES.inverted}
-    //                     onClick={() => {
-    //                         dispatch(closeModal());
-    //                     }}
-    //                     className="nohover"
-    //                 >
-    //                     cancel
-    //                 </Button>
-    //             </ModalButtons>
-    //         </ModalContent>
-    //     </ModalContainer>
-    // );
 };
 export default Modal;

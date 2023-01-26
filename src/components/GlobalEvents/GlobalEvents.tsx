@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useEffect, useState } from 'react'
 
+import { useAppSelector } from '../../app/hooks'
 import LoadingScreen from '../LoadingScreen/LoadingScreen'
 import Modal from '../Modal/Modal'
 import Notification from '../Notification/Notification'
 
 const GlobalEvents = () => {
-    const { isLoading, message } = useSelector(store => store.user);
-    const { isOpen, type, content, closeOnBackdropClick = false } = useSelector(store => store.modal);
+    const { isLoading, message } = useAppSelector(store => store.user);
+    const { isOpen, type, content, closeOnBackdropClick = false } = useAppSelector(store => store.modal);
 
     const [notificationAlert, setNotificationAlert] = useState(false);
 

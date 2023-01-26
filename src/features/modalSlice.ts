@@ -1,12 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface IModalState extends IPayload {
+export interface IModalState extends IPayload {
     isOpen: boolean;
 }
 
 interface IPayload {
-    type: String;
-    content: Map<String, String>;
+    type: string;
+    content: Map<string, any>;
     closeOnBackdropClick: boolean;
 }
 
@@ -22,6 +22,7 @@ const modalSlice = createSlice({
     initialState,
     reducers: {
         openModal: (state, { payload }: PayloadAction<IPayload>) => {
+            console.log(payload);
             state.type = payload.type;
             state.content = payload.content;
             state.isOpen = true;
