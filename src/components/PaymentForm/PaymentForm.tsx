@@ -1,24 +1,25 @@
-import { useState } from 'react';
+import { useState, FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 
-import { closeModal, openModal } from '../../features/modalSlice.ts';
-
 import { BUTTON_TYPES } from '../Button/Button';
+
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { clearCart } from '../../features/cartSlice';
+import { closeModal, openModal } from '../../features/modalSlice';
+
 import { PaymentFormStyled, Form, PaymentButton, CardElementWrap } from './styles'
-import { clearCart } from '../../features/cartSlice.ts';
 
 const PaymentForm = () => {
     const navigate = useNavigate();
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     const stripe = useStripe();
     const elements = useElements();
     const [isPaymentProcessing, setIsPaymentProcessing] = useState(false);
-    const { cartTotal } = useSelector(store => store.cart);
-    const { user } = useSelector(store => store.user);
+    const { cartTotal } = useAppSelector(store => store.cart);
+    const { user } = useAppSelector(store => store.user);
 
-    const paymentHandler = async (e) => {
+    const paymentHandler = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         if (!stripe || !elements) return;
@@ -35,9 +36,13 @@ const PaymentForm = () => {
 
         const { paymentIntent: { client_secret } } = response;
 
+        const cardElement = elements.getElement(CardElement);
+
+        if(cardElement === null) return;
+
         const paymentResult = await stripe.confirmCardPayment(client_secret, {
             payment_method: {
-                card: elements.getElement(CardElement),
+                card: cardElement,
                 billing_details: {
                     name: user ? user.displayName : 'Guest'
                 }

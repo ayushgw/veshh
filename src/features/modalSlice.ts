@@ -7,7 +7,7 @@ export interface IModalState extends IPayload {
 interface IPayload {
     type: string;
     content: Map<string, any>;
-    closeOnBackdropClick: boolean;
+    closeOnBackdropClick?: boolean;
 }
 
 const initialState: IModalState = {
