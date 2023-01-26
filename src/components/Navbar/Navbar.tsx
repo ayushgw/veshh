@@ -1,18 +1,18 @@
 import { Link } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
 
 import LogoPng from '../../assets/logo.png'
 import CartIcon from '../CartIcon/CartIcon'
 import CartDropdown from '../CartDropdown/CartDropdown'
 
+import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import { signOutStart } from '../../features/userSlice'
 
 import { StyledNavbar, LogoImage, NavLink, NavLinks } from './styles'
 
 const Navbar = () => {
-  const dispatch = useDispatch();
-  const { user } = useSelector(store => store.user);
-  const { isCartOpen } = useSelector(store => store.cart);
+  const dispatch = useAppDispatch();
+  const { user } = useAppSelector(store => store.user);
+  const { isCartOpen } = useAppSelector(store => store.cart);
 
   const isUserPresent = user && (user.displayName || user.email);
 

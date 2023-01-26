@@ -1,18 +1,15 @@
-import React from 'react'
-import { useDispatch, useSelector } from 'react-redux';
-
-// import Button, { BUTTON_TYPES } from '../Button/Button'
 import CheckoutItem from '../CheckoutItem/CheckoutItem';
 import PaymentForm from '../PaymentForm/PaymentForm';
 
-import { clearCart } from '../../features/cartSlice.ts';
-import { closeModal, openModal } from '../../features/modalSlice.ts'
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { clearCart } from '../../features/cartSlice';
+import { closeModal, openModal } from '../../features/modalSlice'
 
 import { CheckoutContainer, Header, CheckoutTableStyled, HeaderBlock, TableHeader, CheckoutTotal, EmptyText, TableFooter, TrashIcon } from './styles'
 
 const CheckoutTable = () => {
-    const dispatch = useDispatch();
-    const { cartItems, cartTotal, cartItemsCount } = useSelector(store => store.cart);
+    const dispatch = useAppDispatch();
+    const { cartItems, cartTotal, cartItemsCount } = useAppSelector(store => store.cart);
 
     const openRemoveAllItemsModal = () => {
         const content = new Map();

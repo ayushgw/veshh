@@ -118,6 +118,5 @@ export const TableFooter = styled.div`
 
 export const CheckoutTotal = styled.div`
     margin: 1rem 1rem 1rem auto;
-    ${'' /* text-align: right; */}
     font-size: 1.5rem;
 `
