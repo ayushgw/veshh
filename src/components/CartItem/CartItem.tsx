@@ -1,3 +1,4 @@
+import { FC, memo } from 'react';
 import { CartItemStyled, CartItemDetails, CartItemImage } from './styles'
 
 import { ICartItem } from '../../features/cartSlice'; 
@@ -6,7 +7,7 @@ export type CartItemProps = {
     cartItem: ICartItem
 }
 
-const CartItem = ({ cartItem }: CartItemProps) => {
+const CartItem: FC<CartItemProps> = memo(({ cartItem }) => {
     const { name, price, imageUrl, quantity } = cartItem;
 
     return (
@@ -22,6 +23,6 @@ const CartItem = ({ cartItem }: CartItemProps) => {
             </CartItemDetails>
         </CartItemStyled>
     )
-}
+});
 
 export default CartItem

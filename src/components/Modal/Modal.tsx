@@ -10,8 +10,6 @@ import { IModalState } from '../../features/modalSlice';
 const Modal = ({ isOpen, type, content, closeOnBackdropClick }: IModalState) => {
     const dispatch = useAppDispatch();
 
-    console.log(content.get('buttonCallback'));
-
     if (type !== 'alert' && type !== 'confirm') return null;
 
     return (

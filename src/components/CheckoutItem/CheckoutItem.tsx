@@ -1,4 +1,4 @@
-import React from 'react'
+import { FC, memo } from 'react'
 import { useDispatch } from 'react-redux';
 
 import { updateQuantityOrRemoveItem } from '../../features/cartSlice';
@@ -7,7 +7,7 @@ import { CheckoutItemStyled, CheckoutItemImageContainer, CheckoutItemRemoveButto
 
 import { CartItemProps } from '../CartItem/CartItem';
 
-const CheckoutItem = ({ cartItem }: CartItemProps) => {
+const CheckoutItem: FC<CartItemProps> = memo(({ cartItem }) => {
     const dispatch = useDispatch();
 
     const { id, name, imageUrl, price, quantity } = cartItem;
@@ -29,6 +29,6 @@ const CheckoutItem = ({ cartItem }: CartItemProps) => {
             <span className="price">&#8377;{price}</span>
         </CheckoutItemStyled>
     )
-}
+});
 
 export default CheckoutItem
