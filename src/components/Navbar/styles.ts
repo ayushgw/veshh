@@ -40,3 +40,12 @@ export const NavLink = styled(Link)`
     text-decoration: underline;
   }
 `
+
+export const Greeting = styled.span`
+  background: #fafa4a4d;
+  padding: 5px;
+
+  @media (max-width: 600px) {
+    display: none;
+  }
+`

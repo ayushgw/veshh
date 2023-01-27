@@ -7,7 +7,7 @@ import CartDropdown from '../CartDropdown/CartDropdown'
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import { signOutStart } from '../../features/userSlice'
 
-import { StyledNavbar, LogoImage, NavLink, NavLinks } from './styles'
+import { StyledNavbar, LogoImage, NavLink, NavLinks, Greeting } from './styles'
 
 const Navbar = () => {
   const dispatch = useAppDispatch();
@@ -24,9 +24,9 @@ const Navbar = () => {
       <NavLinks>
         {
           isUserPresent &&
-          (<span style={{ background: "#fafa4a4d", padding: "5px" }}>
+          (<Greeting>
             {'Hi, ' + (user.displayName || user.email)}
-          </span>)
+          </Greeting>)
         }
         <NavLink to="/shop">shop</NavLink>
         {isUserPresent
