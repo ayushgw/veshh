@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
 
 import Navbar from './Navbar/Navbar'
 import GlobalEvents from './GlobalEvents/GlobalEvents'
@@ -10,24 +9,27 @@ import ShopPage from '../routes/ShopPage/ShopPage'
 import CheckoutPage from '../routes/CheckoutPage/CheckoutPage'
 import CategoryPage from '../routes/CategoryPage/CategoryPage'
 
+import { useAppDispatch, useAppSelector } from '../app/hooks'
 import { checkUserSession, setUser } from '../features/userSlice'
-import { setCart } from '../features/cartSlice.ts'
+import { setCart } from '../features/cartSlice'
 
 const App = () => {
-  const dispatch = useDispatch();
-  const { user } = useSelector(store => store.user);
+  const dispatch = useAppDispatch();
+  const { user } = useAppSelector(store => store.user);
 
   useEffect(() => {
-    const user = sessionStorage.getItem('veshh_user') ? JSON.parse(sessionStorage.getItem('veshh_user')) : null;
-    if (user) {
-      dispatch(setUser(user));
+    const userSession = sessionStorage.getItem('veshh_user');
+    const userData = userSession !== null ? JSON.parse(userSession) : null;
+    if (userData) {
+      dispatch(setUser(userData));
       return;
     }
     dispatch(checkUserSession());
   }, [dispatch])
 
   useEffect(() => {
-    const cartItems = JSON.parse(localStorage.getItem('veshh_cart_items')) || [];
+    const cartSession = localStorage.getItem('veshh_cart_items');
+    const cartItems = cartSession !== null ? JSON.parse(cartSession) : [];
     dispatch(setCart(cartItems));
   }, [dispatch])
 

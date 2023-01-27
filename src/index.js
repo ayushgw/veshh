@@ -20,6 +20,3 @@ root.render(
     </BrowserRouter>
   </Provider>
 );
-
-
-// TODO - Fix grid - products width bug
