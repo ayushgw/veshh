@@ -1,9 +1,13 @@
-import React from 'react'
 import { CSSTransition } from 'react-transition-group'
 
 import { Wrap, Content } from './styles'
 
-const Notification = ({ message, notificationAlert }) => {
+type NotificationProps = {
+    message: string;
+    notificationAlert: boolean;
+}
+
+const Notification = ({ message, notificationAlert }: NotificationProps) => {
     return (
         <CSSTransition
             in={notificationAlert}

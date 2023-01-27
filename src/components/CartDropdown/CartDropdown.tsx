@@ -1,3 +1,4 @@
+import { useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import Button, { BUTTON_TYPES } from '../Button/Button'
@@ -15,17 +16,17 @@ export type CartDropdownProps = {
 const CartDropdown = ({ isCartOpen }: CartDropdownProps) => {
     const dispatch = useAppDispatch();
     const { cartItems, cartTotal, cartItemsCount } = useAppSelector(store => store.cart);
-
     const navigate = useNavigate();
-    const gotoCheckout = () => {
-        navigate('/checkout')
-        closeCart();
-    };
 
-    const closeCart = () => {
+    const closeCart = useCallback(() => {
         document.body.style.overflow = 'unset';
         dispatch(toggleIsCartOpen());
-    };
+    }, []);
+
+    const gotoCheckout = useCallback(() => {
+        navigate('/checkout')
+        closeCart();
+    }, []);
 
     return (
         <>
