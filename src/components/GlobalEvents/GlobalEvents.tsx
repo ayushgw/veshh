@@ -25,7 +25,7 @@ const GlobalEvents = () => {
     return (
         <>
             <Notification message={message} notificationAlert={notificationAlert} />
-            {isLoading && <LoadingScreen />}
+            {/* {isLoading && <LoadingScreen />} */}
             <Modal isOpen={isOpen} type={type} content={content} closeOnBackdropClick={closeOnBackdropClick} />
         </>
     )
