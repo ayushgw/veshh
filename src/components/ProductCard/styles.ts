@@ -30,11 +30,6 @@ export const ProductCardStyled = styled.div`
   min-width: 15rem;
   margin-bottom: 2.5rem;
 
-  @media (max-width: 600px) {
-    height: 17rem;
-    min-width: 12rem;
-  }
-
   &:hover {
     ${CardImage} {
       opacity: 0.8;
@@ -43,6 +38,26 @@ export const ProductCardStyled = styled.div`
     ${CardButton} {
       opacity: 0.85;
       display: flex;
+    }
+  }
+  
+  @media (max-width: 600px) {
+    height: 17rem;
+    min-width: 12rem;
+
+    ${CardButton} {
+      display: flex;
+      opacity: 1;
+    }
+
+    &:hover {
+      ${CardImage} {
+        opacity: unset;
+      }
+
+      ${CardButton}(.nohover) {
+        opacity: 1;
+      }
     }
   }
 `
