@@ -55,7 +55,7 @@ export const ProductCardStyled = styled.div`
         opacity: unset;
       }
 
-      ${CardButton}(.nohover) {
+      ${CardButton} {
         opacity: 1;
       }
     }

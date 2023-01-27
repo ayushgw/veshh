@@ -20,3 +20,6 @@ root.render(
     </BrowserRouter>
   </Provider>
 );
+
+// TODO : clean up mobile css, add breakpoints
+// useful link : https://dev.to/cagatayunal/how-to-use-css-media-query-breakpoint-in-styled-components-9of

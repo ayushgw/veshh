@@ -25,7 +25,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
                 <span className="name">{name}</span>
                 <span className="price">&#8377;{price}</span>
             </CardFooter>
-            <CardButton className={windowSize.current[0] < 600 ? 'nohover' : undefined} buttonType={BUTTON_TYPES.inverted} onClick={() => dispatch(addItemToCart(product))}>Add to cart</CardButton>
+            <CardButton className={windowSize.current[0] < 600 ? 'nohover' : ''} buttonType={BUTTON_TYPES.inverted} onClick={() => dispatch(addItemToCart(product))}>Add to cart</CardButton>
         </ProductCardStyled>
     )
 }
